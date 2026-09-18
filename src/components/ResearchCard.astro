@@ -1,0 +1,4 @@
+---
+interface Props { title:string; category:string; summary:string; href?:string } const {title,category,summary,href='#'}=Astro.props;
+---
+<article class="bg-white rounded-xl shadow p-6"><div class="text-xs text-amber-600 font-medium mb-1">{category}</div><h3 class="font-semibold text-lg mb-2"><a href={href}>{title}</a></h3><p class="text-slate-600 text-sm">{summary}</p></article>
