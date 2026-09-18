@@ -1,2 +1,3 @@
 import { defineConfig } from 'astro/config';
-export default defineConfig({ site: 'https://ydtzfx.github.io', base: '/yunding-portal' });
+import sitemap from '@astrojs/sitemap';
+export default defineConfig({ site: 'https://ydtzfx.github.io', base: '/yunding-portal', integrations: [sitemap()] });
