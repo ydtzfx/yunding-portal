@@ -1,0 +1,1 @@
+{"name":"yunding-portal","type":"module","version":"1.0.0","private":true,"scripts":{"dev":"astro dev","build":"astro check && astro build","preview":"astro preview","check":"astro check"},"dependencies":{"@astrojs/check":"^0.9.4","astro":"^5.13.5","tailwindcss":"^4.1.13","typescript":"^5.9.2"},"devDependencies":{}}

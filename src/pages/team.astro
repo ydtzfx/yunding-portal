@@ -1,0 +1,4 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'; import {team} from '../data/team';
+---
+<BaseLayout title="团队介绍"><section class="max-w-5xl mx-auto px-6 py-16"><h1 class="text-3xl font-bold mb-8">团队介绍</h1><div class="grid md:grid-cols-3 gap-8">{team.map(m=><div class="bg-white rounded-xl shadow p-6"><h3 class="font-semibold">{m.role}</h3><p class="text-slate-500 text-sm mt-2">{m.bio}</p></div>)}</div></section></BaseLayout>
