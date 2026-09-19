@@ -1,14 +1,15 @@
 ---
 import ResearchCard from './ResearchCard.astro';
+import { withBase } from '../lib/paths';
 interface Item { id:string; data:{ title:string; category:string; summary:string; reportNumber?:string; date:Date } }
 interface Props { entries:Item[] }
-const {entries}=Astro.props; const base=import.meta.env.BASE_URL;
+const {entries}=Astro.props;
 ---
 {entries.length>0 && <aside class="max-w-5xl mx-auto px-6 pb-16" aria-labelledby="related-heading">
   <h2 id="related-heading" class="text-2xl font-bold mb-6">相关阅读</h2>
   <div class="grid md:grid-cols-3 gap-6">{entries.map(entry=>
     <ResearchCard title={entry.data.title} category={entry.data.category} summary={entry.data.summary}
       reportNumber={entry.data.reportNumber} date={entry.data.date}
-      href={base+'research/'+entry.id+'/'}/>
+      href={withBase('research/'+entry.id+'/')}/>
   )}</div>
 </aside>}

@@ -1,6 +1,6 @@
 ---
 import { company } from '../data/company';
-const base = import.meta.env.BASE_URL;
+import { withBase } from '../lib/paths';
 const nav=[['','首页'],['about/','关于我们'],['research/','研究观点'],['team/','团队介绍'],['contact/','联系我们']];
 ---
-<nav class="bg-white shadow-sm sticky top-0 z-50"><div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"><a href={base} class="text-xl font-bold text-slate-800">{company.name}</a><div class="space-x-6 text-slate-600 text-sm font-medium">{nav.map(([href,label])=><a href={base+href} class="hover:text-amber-600">{label}</a>)}</div></div></nav>
+<nav class="bg-white shadow-sm sticky top-0 z-50"><div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"><a href={withBase()} class="text-xl font-bold text-slate-800">{company.name}</a><div class="space-x-6 text-slate-600 text-sm font-medium">{nav.map(([href,label])=><a href={withBase(href)} class="hover:text-amber-600">{label}</a>)}</div></div></nav>

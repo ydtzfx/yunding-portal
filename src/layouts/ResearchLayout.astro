@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import SourceList from '../components/SourceList.astro';
+import { withBase } from '../lib/paths';
 interface Source { title:string; publisher:string; url:string; date?:string; accessed?:string }
 interface Author { id:string; name:string; type:'Person'|'Organization'; role?:string; bio:string; url?:string }
 interface Props {
@@ -9,8 +10,8 @@ interface Props {
 }
 const {title,summary,category,reportNumber,author,publishedAt,updatedAt,tags=[],sources=[]}=Astro.props;
 const canonicalURL=new URL(Astro.url.pathname,Astro.site).toString();
-const base=import.meta.env.BASE_URL;
-const authorURL=author.url ?? new URL(base+'research/authors/'+author.id+'/',Astro.site).toString();
+const authorPath=withBase('research/authors/'+author.id+'/');
+const authorURL=author.url ?? new URL(authorPath,Astro.site).toString();
 const jsonLd={
   '@context':'https://schema.org',
   '@type':'Article',
@@ -22,7 +23,7 @@ const jsonLd={
   mainEntityOfPage:{'@type':'WebPage','@id':canonicalURL},
   keywords:tags,
   author:{'@type':author.type,name:author.name,url:authorURL},
-  publisher:{'@type':'Organization',name:'芸鼎投资研究院',url:new URL(base,Astro.site).toString()},
+  publisher:{'@type':'Organization',name:'芸鼎投资研究院',url:new URL(withBase(),Astro.site).toString()},
 };
 ---
 <BaseLayout title={title} description={summary} canonical={canonicalURL} ogType="article">
@@ -37,7 +38,7 @@ const jsonLd={
     <h1 class="text-3xl font-bold mb-4">{title}</h1>
     <div class="text-sm text-slate-500 border-b border-slate-200 pb-6 mb-8 flex flex-wrap gap-x-4 gap-y-2">
       {reportNumber && <span>报告编号：{reportNumber}</span>}
-      <span>作者：<a class="hover:underline" href={base+'research/authors/'+author.id+'/'}>{author.name}</a></span>
+      <span>作者：<a class="hover:underline" href={authorPath}>{author.name}</a></span>
       <time datetime={publishedAt.toISOString()}>发布：{publishedAt.toISOString().slice(0,10)}</time>
       {updatedAt && <time datetime={updatedAt.toISOString()}>更新：{updatedAt.toISOString().slice(0,10)}</time>}
     </div>
