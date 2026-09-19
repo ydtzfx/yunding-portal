@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ResearchCard from '../../../components/ResearchCard.astro';
+export async function getStaticPaths(){
+  const authors=await getCollection('authors');
+  return authors.map(author=>({params:{id:author.id},props:{author}}));
+}
+const {author}=Astro.props;
+const entries=(await getCollection('research',({data})=>!data.draft && data.authorId===author.id))
+  .sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
+const base=import.meta.env.BASE_URL;
+---
+<BaseLayout title={author.data.name} description={author.data.bio}>
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <p class="text-sm text-amber-600 mb-2">{author.data.role}</p>
+    <h1 class="text-3xl font-bold mb-4">{author.data.name}</h1>
+    <p class="text-slate-600 max-w-3xl mb-10">{author.data.bio}</p>
+    <h2 class="text-2xl font-semibold mb-6">已发布研究</h2>
+    <div class="grid md:grid-cols-2 gap-6">{entries.map(entry=>
+      <ResearchCard title={entry.data.title} category={entry.data.category} summary={entry.data.summary}
+        reportNumber={entry.data.reportNumber} date={entry.data.date}
+        href={base+'research/'+entry.id+'/'}/>
+    )}</div>
+  </section>
+</BaseLayout>
