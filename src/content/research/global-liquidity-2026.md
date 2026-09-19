@@ -2,8 +2,12 @@
 title: 全球流动性拐点下的资产配置思路
 date: 2026-09-18
 category: 宏观策略
-author: 芸鼎投资研究院
+tags: []
+authorId: yunding-research-institute
 summary: 全球主要央行政策路径变化及资产配置观察。
+featured: false
+related: []
+sources: []
 draft: true
 ---
 
