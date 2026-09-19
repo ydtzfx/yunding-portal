@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ResearchCard from '../../../components/ResearchCard.astro';
+import { withBase } from '../../../lib/paths';
 export async function getStaticPaths(){
   const authors=await getCollection('authors');
   return authors.map(author=>({params:{id:author.id},props:{author}}));
@@ -9,7 +10,6 @@ export async function getStaticPaths(){
 const {author}=Astro.props;
 const entries=(await getCollection('research',({data})=>!data.draft && data.authorId===author.id))
   .sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
-const base=import.meta.env.BASE_URL;
 ---
 <BaseLayout title={author.data.name} description={author.data.bio}>
   <section class="max-w-5xl mx-auto px-6 py-16">
@@ -20,7 +20,7 @@ const base=import.meta.env.BASE_URL;
     <div class="grid md:grid-cols-2 gap-6">{entries.map(entry=>
       <ResearchCard title={entry.data.title} category={entry.data.category} summary={entry.data.summary}
         reportNumber={entry.data.reportNumber} date={entry.data.date}
-        href={base+'research/'+entry.id+'/'}/>
+        href={withBase('research/'+entry.id+'/')}/>
     )}</div>
   </section>
 </BaseLayout>
