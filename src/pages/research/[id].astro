@@ -1,7 +1,42 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ResearchLayout from '../../layouts/ResearchLayout.astro';
-export async function getStaticPaths(){const entries=await getCollection('research',({data})=>!data.draft);return entries.map(entry=>({params:{id:entry.id},props:{entry}}));}
-const {entry}=Astro.props; const {Content}=await render(entry);
+import RelatedResearch from '../../components/RelatedResearch.astro';
+
+export async function getStaticPaths(){
+  const entries=await getCollection('research',({data})=>!data.draft);
+  return entries.map(entry=>({params:{id:entry.id},props:{entry}}));
+}
+
+const {entry}=Astro.props;
+const {Content}=await render(entry);
+const [authors,published]=await Promise.all([
+  getCollection('authors'),
+  getCollection('research',({data})=>!data.draft),
+]);
+const authorEntry=authors.find(author=>author.id===entry.data.authorId);
+if(!authorEntry) throw new Error(`Missing author profile: ${entry.data.authorId}`);
+
+const explicit=published
+  .filter(candidate=>entry.data.related.includes(candidate.id) && candidate.id!==entry.id)
+  .sort((a,b)=>entry.data.related.indexOf(a.id)-entry.data.related.indexOf(b.id));
+const fallback=published
+  .filter(candidate=>candidate.id!==entry.id && candidate.data.category===entry.data.category && !explicit.some(item=>item.id===candidate.id))
+  .sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
+const relatedEntries=[...explicit,...fallback].slice(0,3);
+const author={id:authorEntry.id,...authorEntry.data};
 ---
-<ResearchLayout title={entry.data.title} summary={entry.data.summary} category={entry.data.category}><div class="prose max-w-none"><Content/></div></ResearchLayout>
+<ResearchLayout
+  title={entry.data.title}
+  summary={entry.data.description ?? entry.data.summary}
+  category={entry.data.category}
+  reportNumber={entry.data.reportNumber}
+  author={author}
+  publishedAt={entry.data.date}
+  updatedAt={entry.data.updated}
+  tags={entry.data.tags}
+  sources={entry.data.sources}
+>
+  <div class="prose max-w-none"><Content/></div>
+</ResearchLayout>
+<RelatedResearch entries={relatedEntries}/>
