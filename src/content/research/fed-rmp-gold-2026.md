@@ -1,16 +1,78 @@
 ---
 title: 从 QT 终结到准备金管理购买：美联储资产负债表机制变化与黄金定价再评估
+reportNumber: YD-MACRO-2026-001
 date: 2026-09-19
+updated: 2026-09-19
 category: 宏观策略
 tags:
   - 美联储
   - 流动性
   - 黄金
   - 资产配置
-author: 芸鼎投资研究院
+authorId: yunding-research-institute
 summary: QT 结束后，美联储通过准备金管理购买维持充足准备金，资产负债表重新转入有条件扩张。本文区分 RMP 与 QE 的政策含义，并结合财政债务、通胀与央行黄金需求，重新评估黄金的中期定价逻辑。
 description: QT 终结并不等同于 QE 重启。本文从准备金管理购买、美国财政债务、通胀与央行黄金配置出发，分析美联储资产负债表新机制及其对黄金定价的影响。
 featured: false
+related: []
+sources:
+  - title: Federal Reserve Balance Sheet Developments
+    publisher: Federal Reserve Board
+    url: https://www.federalreserve.gov/monetarypolicy/November-2025-Federal-Reserve-Balance-Sheet-Developments.htm
+    date: 2025-11
+    accessed: 2026-09-19
+  - title: Statement Regarding Reserve Management Purchases Operations
+    publisher: Federal Reserve Bank of New York
+    url: https://www.newyorkfed.org/markets/opolicy/operating_policy_251210a
+    date: 2025-12-10
+    accessed: 2026-09-19
+  - title: Economic Outlook and Monetary Policy Implementation
+    publisher: Federal Reserve Board
+    url: https://www.federalreserve.gov/newsevents/speech/jefferson20260116a.htm
+    date: 2026-01-16
+    accessed: 2026-09-19
+  - title: Treasury Securities Operational Details
+    publisher: Federal Reserve Bank of New York
+    url: https://www.newyorkfed.org/markets/domestic-market-operations/monetary-policy-implementation/treasury-securities/treasury-securities-operational-details
+    accessed: 2026-09-19
+  - title: H.4.1 Factors Affecting Reserve Balances
+    publisher: Federal Reserve Board
+    url: https://www.federalreserve.gov/releases/h41/Current/
+    date: 2026-09-17
+    accessed: 2026-09-19
+  - title: FOMC Statement
+    publisher: Federal Reserve Board
+    url: https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm
+    date: 2026-09-16
+    accessed: 2026-09-19
+  - title: Summary of Economic Projections
+    publisher: Federal Reserve Board
+    url: https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm
+    date: 2026-09-16
+    accessed: 2026-09-19
+  - title: Debt to the Penny
+    publisher: U.S. Treasury Fiscal Data
+    url: https://fiscaldata.treasury.gov/datasets/debt-to-the-penny/
+    accessed: 2026-09-19
+  - title: Gold Demand Trends — Full Year 2025
+    publisher: World Gold Council
+    url: https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-full-year-2025
+    date: 2026
+    accessed: 2026-09-19
+  - title: Gold Demand Trends — Q2 2026 — Central Banks
+    publisher: World Gold Council
+    url: https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q2-2026/central-banks
+    date: 2026
+    accessed: 2026-09-19
+  - title: Currency Composition of Official Foreign Exchange Reserves — 2026 Q1
+    publisher: International Monetary Fund
+    url: https://data.imf.org/en/news/imf%20data%20brief%20july%201
+    date: 2026-07-01
+    accessed: 2026-09-19
+  - title: Gold in Central Bank Reserves — Strategic Considerations, Market Risks, and Practical Guidance
+    publisher: International Monetary Fund
+    url: https://www.elibrary.imf.org/view/journals/068/2026/007/article-A001-en.xml
+    date: 2026-07
+    accessed: 2026-09-19
 draft: false
 ---
 
@@ -20,13 +82,13 @@ draft: false
 
 ## 一、从 QT 到 RMP：资产负债表进入新阶段
 
-2025 年 10 月，美联储宣布结束资产负债表缩减，并自 12 月 1 日起停止证券持有量的持续下降。12 月 10 日，FOMC 进一步指示纽约联储通过购买美国国库券，并在必要时购买剩余期限三年以内的其他国债，以维持“充足准备金”水平。
+2025 年 10 月，美联储宣布结束资产负债表缩减，并自 12 月 1 日起停止证券持有量的持续下降（见资料来源 1）。12 月 10 日，FOMC 进一步指示纽约联储（见资料来源 2–4）通过购买美国国库券，并在必要时购买剩余期限三年以内的其他国债，以维持“充足准备金”水平。
 
 RMP 的初始规模较大。纽约联储在 2025 年 12 月至 2026 年 4 月的多个操作期内安排了每月约 400 亿美元的准备金管理购买；之后规模逐步下降，4 月中旬至 5 月中旬降至约 250 亿美元，随后进一步降至每月约 100 亿美元。进入 2026 年 8 月中旬以后，纽约联储连续两个操作期没有安排新增 RMP，仅继续执行机构证券本金回款再投资。
 
 这一路径说明，RMP 并非预设规模、持续不断的资产购买计划，而是随准备金需求、财政部一般账户（TGA）、流通中现金及货币市场状况动态调整的操作工具。
 
-截至 2026 年 9 月 16 日，美联储证券持有规模约为 6.47 万亿美元，其中美国国债约 4.55 万亿美元，国库券约 5502 亿美元；国库券持有量较一年前增加约 3547 亿美元。资产负债表已经明显脱离持续收缩阶段，但其扩张节奏并非线性。
+截至 2026 年 9 月 16 日，美联储证券持有规模约为 6.47 万亿美元（见资料来源 5），其中美国国债约 4.55 万亿美元，国库券约 5502 亿美元；国库券持有量较一年前增加约 3547 亿美元。资产负债表已经明显脱离持续收缩阶段，但其扩张节奏并非线性。
 
 ## 二、为什么 RMP 不能直接等同于“隐性 QE”
 
@@ -34,7 +96,7 @@ RMP 与 QE 都会扩大央行资产负债表，也都会增加银行体系准备
 
 传统 QE 通常在政策利率接近有效下限时使用，通过大规模购买中长期国债和机构抵押贷款支持证券，压低期限溢价和长期利率，从而主动放松金融条件。RMP 主要购买短期国债，其官方目标是维持充足准备金和对短端利率的控制，而不是压低长期融资成本。
 
-2026 年 9 月 16 日，FOMC 反而将联邦基金目标区间上调至 3.75%—4.00%，同时继续保留“必要时通过购买短期国债维持充足准备金”的操作授权。这一组合本身说明：政策利率立场与资产负债表的准备金管理可以同时朝不同方向运行。
+2026 年 9 月 16 日，FOMC 反而将联邦基金目标区间上调至 3.75%—4.00%（见资料来源 6–7），同时继续保留“必要时通过购买短期国债维持充足准备金”的操作授权。这一组合本身说明：政策利率立场与资产负债表的准备金管理可以同时朝不同方向运行。
 
 因此，把 RMP 直接定义为 QE，容易把“货币政策立场”和“货币政策实施机制”混为一谈。
 
@@ -42,7 +104,7 @@ RMP 与 QE 都会扩大央行资产负债表，也都会增加银行体系准备
 
 ## 三、财政约束上升，但“财政主导”仍应作为风险情景而非既成事实
 
-美国财政约束正在显著增强。截至 2026 年 9 月 17 日，美国联邦总公共债务约为 40.09 万亿美元，其中公众持有债务约 32.39 万亿美元。
+美国财政约束正在显著增强。截至 2026 年 9 月 17 日，美国联邦总公共债务约为 40.09 万亿美元，其中公众持有债务约 32.39 万亿美元（见资料来源 8）。
 
 更高的债务存量意味着财政融资对利率、期限溢价和市场吸收能力更加敏感，也提高了货币政策与财政条件之间的相互影响。对于资产配置而言，这一背景会强化对长期实际利率、通胀风险溢价和美元信用成本的关注。
 
@@ -69,11 +131,11 @@ RMP 与 QE 都会扩大央行资产负债表，也都会增加银行体系准备
 
 ## 五、央行黄金需求仍强，但不能简单等同于全面“去美元化”
 
-央行购金是近年来黄金需求结构的重要变化。世界黄金协会统计显示，2025 年全球央行净购金约 863 吨，虽然低于此前连续三年超过 1000 吨的水平，但仍处于历史高位。2026 年第二季度央行净购金约 289 吨，上半年累计约 345 吨。
+央行购金是近年来黄金需求结构的重要变化。世界黄金协会统计显示，2025 年全球央行净购金约 863 吨（见资料来源 9–10），虽然低于此前连续三年超过 1000 吨的水平，但仍处于历史高位。2026 年第二季度央行净购金约 289 吨，上半年累计约 345 吨。
 
 与此同时，数据也提醒我们避免把央行购金简单解释为“全面抛售美元资产”。
 
-IMF 2026 年第一季度 COFER 数据显示，美元在已分配外汇储备中的占比为 57.13%，较 2025 年第四季度的 56.42%反而有所上升。IMF 对黄金储备的研究还指出，近年黄金在官方储备中的占比快速上升，很大一部分来自金价上涨带来的估值效应，而非完全来自大规模实物增持。
+IMF 2026 年第一季度 COFER 数据显示（见资料来源 11–12），美元在已分配外汇储备中的占比为 57.13%，较 2025 年第四季度的 56.42%反而有所上升。IMF 对黄金储备的研究还指出，近年黄金在官方储备中的占比快速上升，很大一部分来自金价上涨带来的估值效应，而非完全来自大规模实物增持。
 
 因此，更准确的表述是：**全球储备管理正在增加对黄金和其他分散化工具的重视，但这一过程并非简单、线性的“去美元化”。**
 
@@ -102,18 +164,3 @@ QT 的终结和 RMP 的启动改变了美联储资产负债表的运行机制。
 因此，我们认为黄金的中长期战略价值有所上升，但这一判断应建立在多因子和情景分析基础上，而不是建立在“RMP 等于 QE”或“资产负债表扩张必然推升金价”的单一因果链上。
 
 > **风险提示：** 本文仅用于宏观研究与市场讨论，不构成任何证券、商品、基金或其他金融产品的投资建议、收益承诺或个性化资产配置建议。黄金价格受实际利率、美元、流动性、地缘政治、市场仓位及政策变化等多重因素影响，可能出现较大波动。
-
-## 主要资料来源
-
-1. Federal Reserve Board, *Federal Reserve Balance Sheet Developments*, November 2025: https://www.federalreserve.gov/monetarypolicy/November-2025-Federal-Reserve-Balance-Sheet-Developments.htm
-2. Federal Reserve Bank of New York, *Statement Regarding Reserve Management Purchases Operations*, December 10, 2025: https://www.newyorkfed.org/markets/opolicy/operating_policy_251210a
-3. Federal Reserve Board, Vice Chair Jefferson, *Economic Outlook and Monetary Policy Implementation*, January 16, 2026: https://www.federalreserve.gov/newsevents/speech/jefferson20260116a.htm
-4. Federal Reserve Bank of New York, *Treasury Securities Operational Details*: https://www.newyorkfed.org/markets/domestic-market-operations/monetary-policy-implementation/treasury-securities/treasury-securities-operational-details
-5. Federal Reserve Board, *H.4.1 Factors Affecting Reserve Balances*, September 17, 2026: https://www.federalreserve.gov/releases/h41/Current/
-6. Federal Reserve Board, *FOMC Statement*, September 16, 2026: https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm
-7. Federal Reserve Board, *Summary of Economic Projections*, September 16, 2026: https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm
-8. U.S. Treasury Fiscal Data, *Debt to the Penny*: https://fiscaldata.treasury.gov/datasets/debt-to-the-penny/
-9. World Gold Council, *Gold Demand Trends: Full Year 2025*: https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-full-year-2025
-10. World Gold Council, *Gold Demand Trends: Q2 2026 — Central Banks*: https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q2-2026/central-banks
-11. IMF, *Currency Composition of Official Foreign Exchange Reserves — 2026 Q1*, July 1, 2026: https://data.imf.org/en/news/imf%20data%20brief%20july%201
-12. IMF, *Gold in Central Bank Reserves: Strategic Considerations, Market Risks, and Practical Guidance*, July 2026: https://www.elibrary.imf.org/view/journals/068/2026/007/article-A001-en.xml
