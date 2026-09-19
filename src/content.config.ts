@@ -1,12 +1,17 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+const citationDate = z.union([z.string(), z.date(), z.number()]).transform((value) => {
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  return String(value);
+});
+
 const sourceSchema = z.object({
   title: z.string(),
   publisher: z.string(),
   url: z.string().url(),
-  date: z.string().optional(),
-  accessed: z.string().optional(),
+  date: citationDate.optional(),
+  accessed: citationDate.optional(),
 });
 
 const researchSchema = z.object({
