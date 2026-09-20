@@ -3,20 +3,145 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ResearchCard from '../../components/ResearchCard.astro';
 import { withBase } from '../../lib/paths';
-const entries=(await getCollection('research',({data})=>!data.draft)).sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
+
+const entries=(await getCollection('research',({data})=>!data.draft))
+  .sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
 const categories=[...new Set(entries.map(e=>e.data.category))].sort();
+const years=[...new Set(entries.map(e=>String(e.data.date.getFullYear())))].sort((a,b)=>Number(b)-Number(a));
+const featured=entries.filter(entry=>entry.data.featured);
 ---
 <BaseLayout title="研究观点" description="芸鼎投资研究院研究观点、宏观策略与资产配置研究。">
-  <section class="max-w-5xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-4">研究观点</h1>
-    <div class="flex flex-wrap gap-3 mb-8">
-      {categories.map(category=><a class="text-sm text-slate-600 hover:text-slate-900" href={withBase('research/category/'+encodeURIComponent(category)+'/')}>{category}</a>)}
-      <a class="text-sm text-slate-600 hover:text-slate-900" href={withBase('research/archive/')}>研究归档</a>
+  <header class="page-header">
+    <div class="page-header-inner">
+      <div class="institution-eyebrow">Research Library</div>
+      <div class="mt-4 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+        <div>
+          <h1 class="page-title">研究观点</h1>
+          <p class="page-intro">按报告标题、摘要、标签、分类与年份检索已发布研究。正式报告均保留报告编号、作者、发布日期、结构化资料来源与风险边界。</p>
+        </div>
+        <div class="grid grid-cols-2 gap-px border border-[#d8d2c8] bg-[#d8d2c8] text-center text-xs">
+          <div class="bg-paper-50 px-5 py-4"><strong class="block font-serif text-2xl text-ink-950">{entries.length}</strong><span class="text-slate-500">已发布报告</span></div>
+          <div class="bg-paper-50 px-5 py-4"><strong class="block font-serif text-2xl text-ink-950">{categories.length}</strong><span class="text-slate-500">研究分类</span></div>
+        </div>
+      </div>
     </div>
-    {entries.length===0?<p class="text-slate-600">暂无已发布研究内容。</p>:<div class="grid md:grid-cols-2 gap-6">{entries.map(entry=>
-      <ResearchCard title={entry.data.title} category={entry.data.category} summary={entry.data.summary}
-        reportNumber={entry.data.reportNumber} date={entry.data.date}
-        href={withBase('research/'+entry.id+'/')}/>
-    )}</div>}
+  </header>
+
+  <section class="institution-container py-12 md:py-16">
+    <div class="institution-card p-5 md:p-6" aria-labelledby="research-filter-title">
+      <div class="mb-5 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <div class="institution-eyebrow">Discovery</div>
+          <h2 id="research-filter-title" class="mt-3 font-serif text-xl font-bold text-ink-950">搜索与筛选</h2>
+        </div>
+        <a class="institution-link text-sm font-semibold" href={withBase('research/archive/')}>查看完整归档 →</a>
+      </div>
+      <div class="grid gap-4 md:grid-cols-[1.4fr_.8fr_.6fr]">
+        <label class="text-xs font-semibold text-slate-600">
+          <span class="mb-2 block">关键词</span>
+          <input id="research-search" class="filter-control" type="search" autocomplete="off" placeholder="搜索标题、摘要或标签"/>
+        </label>
+        <label class="text-xs font-semibold text-slate-600">
+          <span class="mb-2 block">分类</span>
+          <select id="research-category" class="filter-control">
+            <option value="">全部分类</option>
+            {categories.map(category=><option value={category}>{category}</option>)}
+          </select>
+        </label>
+        <label class="text-xs font-semibold text-slate-600">
+          <span class="mb-2 block">年份</span>
+          <select id="research-year" class="filter-control">
+            <option value="">全部年份</option>
+            {years.map(year=><option value={year}>{year}</option>)}
+          </select>
+        </label>
+      </div>
+      <div class="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
+        <p id="research-results-status" aria-live="polite">显示 {entries.length} 篇研究</p>
+        <button id="research-reset" type="button" class="font-semibold text-ink-800 underline decoration-[#cfc8bc] underline-offset-4 hover:text-gold-700">重置筛选</button>
+      </div>
+    </div>
+
+    {featured.length>0 && <section class="mt-12" aria-labelledby="featured-heading">
+      <div class="institution-eyebrow">Featured</div>
+      <h2 id="featured-heading" class="mt-3 font-serif text-2xl font-bold text-ink-950">重点研究</h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-2">{featured.map(entry=>
+        <ResearchCard title={entry.data.title} category={entry.data.category} summary={entry.data.summary}
+          reportNumber={entry.data.reportNumber} date={entry.data.date}
+          href={withBase('research/'+entry.id+'/')}/>
+      )}</div>
+    </section>}
+
+    <section class="mt-12" aria-labelledby="all-research-heading">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <div class="institution-eyebrow">All Research</div>
+          <h2 id="all-research-heading" class="mt-3 font-serif text-2xl font-bold text-ink-950">全部研究</h2>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          {categories.map(category=><a class="border border-[#d8d2c8] px-3 py-2 text-xs font-semibold text-slate-600 hover:border-gold-500 hover:text-gold-700" href={withBase('research/category/'+encodeURIComponent(category)+'/')}>{category}</a>)}
+        </div>
+      </div>
+
+      {entries.length===0
+        ? <p class="mt-8 text-slate-600">暂无已发布研究内容。</p>
+        : <div id="research-grid" class="mt-7 grid gap-6 md:grid-cols-2">
+            {entries.map(entry=><div
+              class="research-result"
+              data-title={entry.data.title.toLowerCase()}
+              data-summary={entry.data.summary.toLowerCase()}
+              data-tags={entry.data.tags.join(' ').toLowerCase()}
+              data-category={entry.data.category}
+              data-year={String(entry.data.date.getFullYear())}
+            >
+              <ResearchCard title={entry.data.title} category={entry.data.category} summary={entry.data.summary}
+                reportNumber={entry.data.reportNumber} date={entry.data.date}
+                href={withBase('research/'+entry.id+'/')}/>
+            </div>)}
+          </div>}
+      <p id="research-empty" class="mt-8 hidden border border-[#d8d2c8] bg-white p-6 text-sm text-slate-600">没有匹配当前条件的研究报告。请调整关键词、分类或年份。</p>
+    </section>
   </section>
+
+  <script is:inline>
+    (() => {
+      const search = document.querySelector('#research-search');
+      const category = document.querySelector('#research-category');
+      const year = document.querySelector('#research-year');
+      const reset = document.querySelector('#research-reset');
+      const status = document.querySelector('#research-results-status');
+      const empty = document.querySelector('#research-empty');
+      const items = [...document.querySelectorAll('.research-result')];
+
+      const update = () => {
+        const q = (search?.value || '').trim().toLowerCase();
+        const c = category?.value || '';
+        const y = year?.value || '';
+        let visible = 0;
+
+        for (const item of items) {
+          const haystack = [item.dataset.title, item.dataset.summary, item.dataset.tags].join(' ');
+          const match = (!q || haystack.includes(q))
+            && (!c || item.dataset.category === c)
+            && (!y || item.dataset.year === y);
+          item.hidden = !match;
+          if (match) visible += 1;
+        }
+
+        if (status) status.textContent = `显示 ${visible} 篇研究`;
+        empty?.classList.toggle('hidden', visible !== 0);
+      };
+
+      search?.addEventListener('input', update);
+      category?.addEventListener('change', update);
+      year?.addEventListener('change', update);
+      reset?.addEventListener('click', () => {
+        if (search) search.value = '';
+        if (category) category.value = '';
+        if (year) year.value = '';
+        update();
+        search?.focus();
+      });
+    })();
+  </script>
 </BaseLayout>
