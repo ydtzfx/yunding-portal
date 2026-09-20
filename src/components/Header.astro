@@ -1,7 +1,7 @@
 ---
 import { company } from '../data/company';
 import { withBase } from '../lib/paths';
-const nav=[['','首页'],['about/','关于我们'],['research/','研究观点'],['team/','研究团队'],['contact/','联系我们']];
+const nav=[['','首页'],['about/','关于我们'],['research/','研究观点'],['methodology/','研究方法'],['team/','研究团队'],['contact/','联系我们']];
 const current=Astro.url.pathname;
 const isActive=(href:string)=>href==='' ? current===withBase() : current.startsWith(withBase(href));
 ---
