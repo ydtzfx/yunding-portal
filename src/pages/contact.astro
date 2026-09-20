@@ -1,14 +1,39 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { company } from '../data/company';
+import { withBase } from '../lib/paths';
 ---
-<BaseLayout title="联系我们" description="芸鼎投资研究院官方联系渠道说明。">
-  <section class="max-w-3xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-8">联系我们</h1>
-    <div class="bg-white rounded-xl shadow p-8 space-y-4 text-slate-600 leading-7">
-      <div><strong class="text-slate-800">网站名称：</strong>{company.name}</div>
-      <p>正式联系邮箱、电话、办公地址及法律主体信息将在完成归属与有效性核验后公开。</p>
-      <p class="text-sm text-slate-500">在官方渠道完成核验前，请勿通过第三方页面或未经本站明确标注的联系方式发送身份证件、账户信息、交易指令或其他敏感信息。</p>
+<BaseLayout title="联系我们" description="芸鼎投资研究院官方联系渠道与信息核验说明。">
+  <header class="page-header">
+    <div class="page-header-inner">
+      <div class="institution-eyebrow">Contact & Verification</div>
+      <h1 class="page-title">联系我们</h1>
+      <p class="page-intro">本站只公开已经完成归属与有效性核验的机构联系信息。当前正式邮箱、电话、办公地址及法律主体信息尚未进入公开状态。</p>
+    </div>
+  </header>
+
+  <section class="institution-container py-12 md:py-16">
+    <div class="grid gap-6 lg:grid-cols-[1fr_.9fr]">
+      <article class="institution-card p-7 md:p-8">
+        <div class="institution-eyebrow">Current Status</div>
+        <h2 class="mt-4 font-serif text-2xl font-bold text-ink-950">官方联系渠道状态</h2>
+        <dl class="mt-7 divide-y divide-[#e2ddd4] text-sm">
+          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">网站名称</dt><dd class="text-slate-600">{company.name}</dd></div>
+          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">正式邮箱</dt><dd class="text-slate-500">待归属核验后公开</dd></div>
+          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">联系电话</dt><dd class="text-slate-500">待有效性核验后公开</dd></div>
+          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">办公地址</dt><dd class="text-slate-500">待主体与地址核验后公开</dd></div>
+        </dl>
+      </article>
+
+      <aside class="border border-[#d8d2c8] bg-[#f3efe6] p-7 md:p-8">
+        <div class="institution-eyebrow">Security Notice</div>
+        <h2 class="mt-4 font-serif text-2xl font-bold text-ink-950">敏感信息保护</h2>
+        <p class="mt-4 text-sm leading-7 text-slate-600">在本站明确标注官方渠道之前，请勿通过第三方页面、社交账号或未经核验的联系方式发送身份证件、银行或交易账户信息、验证码、交易指令、投资组合或其他敏感资料。</p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a class="button-secondary" href={withBase('privacy/')}>隐私说明</a>
+          <a class="button-secondary" href={withBase('disclosure/')}>研究披露</a>
+        </div>
+      </aside>
     </div>
   </section>
 </BaseLayout>
