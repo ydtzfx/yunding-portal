@@ -15,11 +15,12 @@
     "check": "astro check",
     "audit": "npm audit --audit-level=high",
     "qa": "node scripts/qa.mjs",
-    "verify": "npm run content:check && npm run build && npm run qa && npm run release:manifest",
+    "verify": "npm run content:check && npm run build && npm run qa && npm run release:manifest && npm run contract:check",
     "content:check": "node scripts/content-integrity.mjs",
     "release:manifest": "node scripts/release-audit.mjs",
     "ops:sources": "node scripts/source-health.mjs",
-    "ops:uptime": "node scripts/uptime-check.mjs"
+    "ops:uptime": "node scripts/uptime-check.mjs",
+    "contract:check": "node scripts/contract-check.mjs"
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
