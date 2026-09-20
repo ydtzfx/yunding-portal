@@ -1,6 +1,30 @@
 ---
 import { company } from '../data/company';
 import { withBase } from '../lib/paths';
-const nav=[['','首页'],['about/','关于我们'],['research/','研究观点'],['team/','团队介绍'],['contact/','联系我们']];
+const nav=[['','首页'],['about/','关于我们'],['research/','研究观点'],['team/','研究团队'],['contact/','联系我们']];
+const current=Astro.url.pathname;
+const isActive=(href:string)=>href==='' ? current===withBase() : current.startsWith(withBase(href));
 ---
-<nav class="bg-white shadow-sm sticky top-0 z-50"><div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"><a href={withBase()} class="text-xl font-bold text-slate-800">{company.name}</a><div class="space-x-6 text-slate-600 text-sm font-medium">{nav.map(([href,label])=><a href={withBase(href)} class="hover:text-amber-600">{label}</a>)}</div></div></nav>
+<header class="sticky top-0 z-50 border-b border-white/10 bg-ink-950 text-white">
+  <div class="institution-container flex min-h-18 items-center justify-between gap-6 py-3">
+    <a href={withBase()} class="flex min-w-0 items-center gap-3" aria-label={company.name+'首页'}>
+      <span class="grid size-9 shrink-0 place-items-center border border-gold-400/60 text-sm font-semibold text-gold-400">芸</span>
+      <span class="min-w-0">
+        <span class="block truncate text-[15px] font-semibold tracking-wide">{company.name}</span>
+        <span class="hidden text-[10px] uppercase tracking-[.18em] text-white/45 sm:block">{company.englishName}</span>
+      </span>
+    </a>
+    <nav aria-label="主导航" class="overflow-x-auto">
+      <div class="flex items-center gap-1 whitespace-nowrap">
+        {nav.map(([href,label])=><a
+          href={withBase(href)}
+          aria-current={isActive(href) ? 'page' : undefined}
+          class:list={[
+            'rounded-sm px-3 py-2 text-xs font-medium tracking-wide transition',
+            isActive(href) ? 'bg-white/8 text-gold-400' : 'text-white/68 hover:bg-white/5 hover:text-white'
+          ]}
+        >{label}</a>)}
+      </div>
+    </nav>
+  </div>
+</header>
