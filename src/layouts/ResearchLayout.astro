@@ -1,14 +1,18 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import SourceList from '../components/SourceList.astro';
+import ReportHighlights from '../components/research/ReportHighlights.astro';
+import AttachmentList from '../components/research/AttachmentList.astro';
 import { withBase } from '../lib/paths';
 interface Source { title:string; publisher:string; url:string; date?:string; accessed?:string }
 interface Author { id:string; name:string; type:'Person'|'Organization'; role?:string; bio:string; url?:string }
+interface Attachment { title:string; href:string; kind:'report'|'data'|'appendix'|'other'; format:string; size?:string; description?:string }
 interface Props {
   title:string; summary?:string; category?:string; reportNumber?:string;
   author:Author; publishedAt:Date; updatedAt?:Date; tags?:string[]; sources?:Source[];
+  highlights?:string[]; attachments?:Attachment[];
 }
-const {title,summary,category,reportNumber,author,publishedAt,updatedAt,tags=[],sources=[]}=Astro.props;
+const {title,summary,category,reportNumber,author,publishedAt,updatedAt,tags=[],sources=[],highlights=[],attachments=[]}=Astro.props;
 const canonicalURL=new URL(Astro.url.pathname,Astro.site).toString();
 const authorPath=withBase('research/authors/'+author.id+'/');
 const authorURL=author.url ?? new URL(authorPath,Astro.site).toString();
@@ -50,7 +54,9 @@ const jsonLd={
     </header>
 
     <div class="mx-auto max-w-3xl px-6 py-12 md:py-16">
+      <ReportHighlights highlights={highlights}/>
       <div class="research-prose"><slot/></div>
+      <AttachmentList attachments={attachments}/>
       <SourceList sources={sources}/>
     </div>
   </article>
