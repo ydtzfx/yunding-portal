@@ -10,7 +10,7 @@ const citationDate = z.union([z.string(), z.date(), z.number()]).transform((valu
 const sourceSchema = z.object({
   title: z.string(),
   publisher: z.string(),
-  url: z.string().url(),
+  url: z.url(),
   date: citationDate.optional(),
   accessed: citationDate.optional(),
 });
@@ -31,10 +31,10 @@ const researchSchema = z.object({
   draft: z.boolean().default(false),
 }).superRefine((data, ctx) => {
   if (!data.draft && !data.reportNumber) {
-    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['reportNumber'], message: 'Published research requires a reportNumber.' });
+    ctx.addIssue({ code: 'custom', path: ['reportNumber'], message: 'Published research requires a reportNumber.' });
   }
   if (!data.draft && data.sources.length === 0) {
-    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['sources'], message: 'Published research requires at least one source.' });
+    ctx.addIssue({ code: 'custom', path: ['sources'], message: 'Published research requires at least one source.' });
   }
 });
 
@@ -50,7 +50,7 @@ const authors = defineCollection({
     type: z.enum(['Person', 'Organization']),
     role: z.string().optional(),
     bio: z.string(),
-    url: z.string().url().optional(),
+    url: z.url().optional(),
   }),
 });
 
