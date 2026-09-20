@@ -1,12 +1,13 @@
 ---
 import { withBase } from '../../lib/paths';
-interface Attachment { title:string; href:string; kind:'report'|'data'|'appendix'|'other'; format:string; size?:string; description?:string }
+import type { ResearchEntry } from '../../lib/research';
+type Attachment=ResearchEntry['data']['attachments'][number];
 interface Props { attachments:Attachment[] }
 const {attachments}=Astro.props;
 const labels={report:'报告文件',data:'数据文件',appendix:'附录',other:'附件'};
 const external=(href:string)=>/^https?:\/\//i.test(href);
 ---
-{attachments.length>0 && <section class="mt-14 border-t border-[#d8d2c8] pt-8" aria-labelledby="attachments-heading">
+{attachments.length>0 && <section class="mt-14 border-t border-[#d8d2c8] pt-8" aria-labelledby="attachments-heading" data-attachment-list-count={String(attachments.length)}>
   <div class="institution-eyebrow mb-3">Downloads</div>
   <h2 id="attachments-heading" class="font-serif text-2xl font-bold text-ink-950">研究附件</h2>
   <div class="mt-6 grid gap-3">
