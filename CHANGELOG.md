@@ -2,6 +2,29 @@
 
 All notable production releases are documented in this file.
 
+## [1.1.0] - 2026-09-20
+
+### Operational Complete
+
+#### Frontend completion
+- Completed the institutional visual migration for Research Index, category, archive, author and contact surfaces.
+- Added responsive mobile navigation, research keyword/category/year filters, branded favicon/touch/OG assets and expanded responsive artifact QA.
+
+#### Backend governance
+- Added build-time research integrity checks for report-number uniqueness, author/related references, local attachments, publication/update invariants, duplicate/placeholder sources, risk disclosure and inline citation completeness.
+- Added machine-readable `dist/release-audit.json` with published-report metadata and SHA-256 hashes of production output.
+- Added weekly published-source URL health monitoring with protected/rate-limited classification.
+- Added six-hour production uptime monitoring using HTTP status plus content markers.
+- Added weekly recovery snapshots containing a Git bundle, content/config archive, release metadata, HEAD SHA and checksums.
+- Added explicit backup/restore documentation and provider-independent disaster-recovery boundary.
+- Added `yaml@2.8.1` as an explicit deterministic dependency for content-governance tooling.
+
+#### Validation
+- Backend operations rehearsal passed: 2 research entries, 1 published report, 1 author and 1 report number passed referential/publication/citation integrity.
+- All 12 unique published source URLs were checked; 11 were directly healthy and one IMF endpoint returned HTTP 405 and was correctly classified as protected rather than broken.
+- Production root, research library, first report, robots and sitemap all returned HTTP 200 with expected content markers.
+- Recovery Git bundle verification and SHA-256 snapshot checks passed.
+
 ## [1.0.0] - 2026-09-20
 
 ### Institutional Grade Release

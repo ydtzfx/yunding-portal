@@ -4,9 +4,9 @@
 
 ## Current release
 
-**v1.0.0 — Institutional Grade Release**
+**v1.1.0 — Operational Complete**
 
-当前版本以“证据可追溯、研究发布可审计、生产发布可验证”为核心，已建立研究内容、SEO、安全、隐私/披露、可访问性和 GitHub Pages 生产发布基线。
+当前版本在 Institutional Grade 基线上进一步完成前端与后台治理封顶：研究内容具备关系完整性与引用完整性门禁，生产构建生成 release audit manifest，并建立来源健康、生产 uptime 与恢复快照工作流。
 
 ## 技术栈
 
@@ -33,11 +33,17 @@ npm run dev
 
 ```bash
 npm audit --audit-level=high
+npm run content:check
 npm run build
 npm run qa
+npm run release:manifest
 ```
 
-`npm run qa` 会检查生成后的 production artifact，包括内部链接、canonical、H1、meta description、Article JSON-LD、图片 alt、外链安全、robots、sitemap、404 以及静态 HTML/CSS 预算。
+后台/发布验证分为三层：
+
+- `npm run content:check`：报告编号、作者/相关阅读关系、附件、日期、来源与正文引用完整性；
+- `npm run qa`：生成后的 production artifact 链接、SEO、品牌资产、响应式与静态预算；
+- `npm run release:manifest`：生成机器可读的生产文件/报告 SHA-256 审计清单。
 
 ## 研究发布
 
@@ -60,7 +66,10 @@ npm run qa
 - `docs/legal-review-gate.md`
 - Dependabot weekly updates
 - high/critical npm audit findings block CI and deployment
-- Pages deployment runs the same static QA gate before artifact upload
+- Pages deployment runs content integrity + static QA + release manifest before artifact upload
+- weekly published-source health checks
+- six-hour production uptime checks
+- weekly Git bundle/content recovery snapshots
 
 ## Production
 

@@ -55,3 +55,22 @@ For suspected dependency or supply-chain compromise:
 ## Known non-code dependency
 
 GitHub Pages, GitHub Actions, npm registry availability, and upstream package integrity are external dependencies. A green local/static build does not by itself prove successful production deployment.
+
+
+## Backend completion controls
+
+### Content integrity
+
+Both CI and Pages deployment run `npm run content:check` before the Astro build. The gate validates report-number uniqueness, author and related-content references, attachment existence, publication/update dates, duplicate/placeholder source URLs, risk disclosure, citation ranges, and source-to-inline-citation coverage.
+
+### Release audit manifest
+
+After build and static QA, CI and Pages deployment run `npm run release:manifest`. The resulting `dist/release-audit.json` records the build SHA/ref, package version, published-report metadata, output inventory, and SHA-256 hashes.
+
+### Scheduled reliability checks
+
+- `Source Health`: weekly validation of published research-source URLs. Protected/rate-limited responses are reported separately from definitive broken links.
+- `Production Uptime`: every six hours, validates the site root, research library, first published report, robots and sitemap by HTTP status plus content markers.
+- `Recovery Snapshot`: weekly Git bundle, content/config archive, release metadata and checksums, retained for 30 days in Actions artifacts.
+
+Same-provider recovery snapshots do not qualify as independent disaster recovery. Provider-independent backup requires a separately controlled external destination.
