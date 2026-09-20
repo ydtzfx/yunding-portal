@@ -33,16 +33,25 @@ const jsonLd={
     {tags.map(tag=><meta property="article:tag" content={tag}/>)}
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
   </Fragment>
-  <article class="max-w-3xl mx-auto px-6 py-16">
-    <div class="text-amber-600 text-sm mb-2">{category}</div>
-    <h1 class="text-3xl font-bold mb-4">{title}</h1>
-    <div class="text-sm text-slate-500 border-b border-slate-200 pb-6 mb-8 flex flex-wrap gap-x-4 gap-y-2">
-      {reportNumber && <span>报告编号：{reportNumber}</span>}
-      <span>作者：<a class="hover:underline" href={authorPath}>{author.name}</a></span>
-      <time datetime={publishedAt.toISOString()}>发布：{publishedAt.toISOString().slice(0,10)}</time>
-      {updatedAt && <time datetime={updatedAt.toISOString()}>更新：{updatedAt.toISOString().slice(0,10)}</time>}
+
+  <article>
+    <header class="border-b border-[#d8d2c8] bg-[#f1eee7]">
+      <div class="mx-auto max-w-4xl px-6 py-14 md:py-20">
+        <div class="institution-eyebrow mb-5">{category ?? 'Research'}</div>
+        <h1 class="max-w-4xl font-serif text-3xl font-bold leading-[1.35] text-ink-950 md:text-5xl">{title}</h1>
+        {summary && <p class="mt-6 max-w-3xl text-base leading-8 text-slate-600 md:text-lg">{summary}</p>}
+        <div class="mt-8 grid gap-3 border-t border-[#d4cec2] pt-5 text-xs text-slate-500 sm:grid-cols-2 lg:grid-cols-4">
+          {reportNumber && <div><span class="block text-[10px] uppercase tracking-[.14em] text-slate-400">Report</span><span class="mt-1 block font-medium text-ink-900">{reportNumber}</span></div>}
+          <div><span class="block text-[10px] uppercase tracking-[.14em] text-slate-400">Author</span><a class="institution-link mt-1 block font-medium" href={authorPath}>{author.name}</a></div>
+          <div><span class="block text-[10px] uppercase tracking-[.14em] text-slate-400">Published</span><time class="mt-1 block font-medium text-ink-900" datetime={publishedAt.toISOString()}>{publishedAt.toISOString().slice(0,10)}</time></div>
+          <div><span class="block text-[10px] uppercase tracking-[.14em] text-slate-400">Updated</span><time class="mt-1 block font-medium text-ink-900" datetime={(updatedAt ?? publishedAt).toISOString()}>{(updatedAt ?? publishedAt).toISOString().slice(0,10)}</time></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="mx-auto max-w-3xl px-6 py-12 md:py-16">
+      <div class="research-prose"><slot/></div>
+      <SourceList sources={sources}/>
     </div>
-    <slot/>
-    <SourceList sources={sources}/>
   </article>
 </BaseLayout>
