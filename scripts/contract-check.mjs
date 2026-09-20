@@ -75,13 +75,17 @@ for(const report of reports){
     'data-report-number':report.reportNumber,
     'data-author-id':report.authorId,
     'data-published':report.date,
-    'data-updated':report.updated ?? '',
     'data-source-count':String(report.sourceCount),
     'data-attachment-count':String(report.attachmentCount),
     'data-highlight-count':String(report.highlightCount),
   };
   for(const [name,value] of Object.entries(attributes)){
     if(!hasAttr(detail,name,value)) addError(report.id+': detail HTML contract marker '+name+'='+value+' missing');
+  }
+  if(report.updated){
+    if(!hasAttr(detail,'data-updated',report.updated)) addError(report.id+': updated detail is missing data-updated='+report.updated);
+  }else if(/\bdata-updated=/.test(detail)){
+    addError(report.id+': non-updated detail must not emit data-updated');
   }
 
   const referenceCount=countMatches(detail,/\bid=["']ref-\d+["']/g);
