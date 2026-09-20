@@ -2,7 +2,7 @@
 interface Props { highlights:string[] }
 const {highlights}=Astro.props;
 ---
-{highlights.length>0 && <aside class="mb-12 border border-[#d8d2c8] bg-[#f3efe6] p-6 md:p-8" aria-labelledby="highlights-heading">
+{highlights.length>0 && <aside class="mb-12 border border-[#d8d2c8] bg-[#f3efe6] p-6 md:p-8" aria-labelledby="highlights-heading" data-highlight-list-count={String(highlights.length)}>
   <div class="institution-eyebrow mb-3">Key Findings</div>
   <h2 id="highlights-heading" class="font-serif text-2xl font-bold text-ink-950">核心观点</h2>
   <ol class="mt-6 grid gap-5">
