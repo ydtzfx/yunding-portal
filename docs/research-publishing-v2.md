@@ -29,12 +29,12 @@
 1. 新建独立 content branch。
 2. 创建/更新 Markdown，保持 `draft: true`。
 3. 来源核验、事实核验、风险提示和编辑审阅。
-4. Draft PR + CI Green，并验证 draft 不生成公开路由。
+4. Draft PR + CI Green；`npm run content:check` 验证内容关系、日期、附件与引用完整性，并确认 draft 不生成公开路由。
 5. 内容批准后改为 `draft: false`，同时确保报告编号和 sources 完整。
-6. 再次 CI Green，确认详情页、分类页、作者页和 sitemap 均生成。
+6. 再次 CI Green，确认详情页、分类页、作者页和 sitemap 均生成；生产构建同时生成 `release-audit.json`。
 7. Ready for Review → Merge main。
 8. GitHub Pages Deploy Green。
 9. 对生产详情页、canonical、JSON-LD、来源链接和 sitemap 做 smoke test。
 
 ## 8. 发布门禁
-任何以下情况不得 `draft:false`：无报告编号、无来源、关键数据无法追溯、作者身份不明确、风险提示缺失、仍含占位内容。
+任何以下情况不得 `draft:false`：无报告编号、报告编号重复、无来源、关键数据无法追溯、作者身份不明确、相关研究引用不存在、附件不存在、更新时间早于发布日期、正文来源编号越界、结构化来源未在正文引用、风险提示缺失、仍含占位内容。
