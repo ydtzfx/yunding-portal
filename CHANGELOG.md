@@ -2,6 +2,23 @@
 
 All notable production releases are documented in this file.
 
+## [1.1.1] - 2026-09-20
+
+### Contract Aligned
+
+#### Frontend ↔ backend contract
+- Added a shared research service/projection layer derived from Astro Content Collection types.
+- Routed research detail, index, category, archive, author, related-content and card rendering through the shared published-research contract.
+- Added a static `/research/catalog.json` generated from the same projection used by server-rendered research surfaces.
+- Changed research search/filtering to consume the shared catalog by report ID rather than duplicating search metadata in DOM attributes.
+- Removed the first report's non-substantive `updated` date; Updated UI, Open Graph modified time and JSON-LD `dateModified` now exist only when a substantive backend update exists.
+
+#### Contract drift prevention
+- Expanded `release-audit.json` schema to include public research metadata and draft IDs.
+- Added `npm run contract:check` to compare backend release manifest ↔ static catalog ↔ rendered HTML.
+- Contract checks cover report identity, author, dates, source/highlight/attachment counts, tags, explicit related links, index/category/archive/author presence and draft isolation.
+- Pages artifact upload is blocked unless content integrity, static QA, release manifest and frontend/backend contract checks all pass.
+
 ## [1.1.0] - 2026-09-20
 
 ### Operational Complete

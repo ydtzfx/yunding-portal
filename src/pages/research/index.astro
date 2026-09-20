@@ -1,14 +1,21 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ResearchCard from '../../components/ResearchCard.astro';
 import { withBase } from '../../lib/paths';
+import {
+  getPublishedResearch,
+  getResearchCategories,
+  getResearchYears,
+  serializeJsonForHtml,
+  toResearchCatalog,
+} from '../../lib/research';
 
-const entries=(await getCollection('research',({data})=>!data.draft))
-  .sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
-const categories=[...new Set(entries.map(e=>e.data.category))].sort();
-const years=[...new Set(entries.map(e=>String(e.data.date.getFullYear())))].sort((a,b)=>Number(b)-Number(a));
+const entries=await getPublishedResearch();
+const categories=getResearchCategories(entries);
+const years=getResearchYears(entries);
 const featured=entries.filter(entry=>entry.data.featured);
+const catalog=toResearchCatalog(entries);
+const catalogJson=serializeJsonForHtml(catalog);
 ---
 <BaseLayout title="研究观点" description="芸鼎投资研究院研究观点、宏观策略与资产配置研究。">
   <header class="page-header">
@@ -17,7 +24,7 @@ const featured=entries.filter(entry=>entry.data.featured);
       <div class="mt-4 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
         <div>
           <h1 class="page-title">研究观点</h1>
-          <p class="page-intro">按报告标题、摘要、标签、分类与年份检索已发布研究。正式报告均保留报告编号、作者、发布日期、结构化资料来源与风险边界。</p>
+          <p class="page-intro">按报告标题、摘要、标签、分类与年份检索已发布研究。正式报告均来自同一发布契约，并保留报告编号、作者、发布日期、结构化资料来源与风险边界。</p>
         </div>
         <div class="grid grid-cols-2 gap-px border border-[#d8d2c8] bg-[#d8d2c8] text-center text-xs">
           <div class="bg-paper-50 px-5 py-4"><strong class="block font-serif text-2xl text-ink-950">{entries.length}</strong><span class="text-slate-500">已发布报告</span></div>
@@ -66,9 +73,7 @@ const featured=entries.filter(entry=>entry.data.featured);
       <div class="institution-eyebrow">Featured</div>
       <h2 id="featured-heading" class="mt-3 font-serif text-2xl font-bold text-ink-950">重点研究</h2>
       <div class="mt-6 grid gap-6 md:grid-cols-2">{featured.map(entry=>
-        <ResearchCard title={entry.data.title} category={entry.data.category} summary={entry.data.summary}
-          reportNumber={entry.data.reportNumber} date={entry.data.date}
-          href={withBase('research/'+entry.id+'/')}/>
+        <ResearchCard entry={entry} href={withBase('research/'+entry.id+'/')}/>
       )}</div>
     </section>}
 
@@ -86,23 +91,15 @@ const featured=entries.filter(entry=>entry.data.featured);
       {entries.length===0
         ? <p class="mt-8 text-slate-600">暂无已发布研究内容。</p>
         : <div id="research-grid" class="mt-7 grid gap-6 md:grid-cols-2">
-            {entries.map(entry=><div
-              class="research-result"
-              data-title={entry.data.title.toLowerCase()}
-              data-summary={entry.data.summary.toLowerCase()}
-              data-tags={entry.data.tags.join(' ').toLowerCase()}
-              data-category={entry.data.category}
-              data-year={String(entry.data.date.getFullYear())}
-            >
-              <ResearchCard title={entry.data.title} category={entry.data.category} summary={entry.data.summary}
-                reportNumber={entry.data.reportNumber} date={entry.data.date}
-                href={withBase('research/'+entry.id+'/')}/>
+            {entries.map(entry=><div class="research-result" data-report-id={entry.id}>
+              <ResearchCard entry={entry} href={withBase('research/'+entry.id+'/')}/>
             </div>)}
           </div>}
       <p id="research-empty" class="mt-8 hidden border border-[#d8d2c8] bg-white p-6 text-sm text-slate-600">没有匹配当前条件的研究报告。请调整关键词、分类或年份。</p>
     </section>
   </section>
 
+  <script id="research-catalog" type="application/json" set:html={catalogJson}></script>
   <script is:inline>
     (() => {
       const search = document.querySelector('#research-search');
@@ -111,7 +108,16 @@ const featured=entries.filter(entry=>entry.data.featured);
       const reset = document.querySelector('#research-reset');
       const status = document.querySelector('#research-results-status');
       const empty = document.querySelector('#research-empty');
+      const catalogNode = document.querySelector('#research-catalog');
       const items = [...document.querySelectorAll('.research-result')];
+
+      let catalog = [];
+      try {
+        catalog = JSON.parse(catalogNode?.textContent || '[]');
+      } catch {
+        catalog = [];
+      }
+      const byId = new Map(catalog.map(item => [item.id, item]));
 
       const update = () => {
         const q = (search?.value || '').trim().toLowerCase();
@@ -120,10 +126,14 @@ const featured=entries.filter(entry=>entry.data.featured);
         let visible = 0;
 
         for (const item of items) {
-          const haystack = [item.dataset.title, item.dataset.summary, item.dataset.tags].join(' ');
-          const match = (!q || haystack.includes(q))
-            && (!c || item.dataset.category === c)
-            && (!y || item.dataset.year === y);
+          const record = byId.get(item.dataset.reportId);
+          const haystack = record
+            ? [record.reportNumber, record.title, record.summary, ...(record.tags || [])].join(' ').toLowerCase()
+            : '';
+          const match = Boolean(record)
+            && (!q || haystack.includes(q))
+            && (!c || record.category === c)
+            && (!y || String(record.date).slice(0, 4) === y);
           item.hidden = !match;
           if (match) visible += 1;
         }

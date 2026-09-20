@@ -1,15 +1,15 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ResearchCard from '../../../components/ResearchCard.astro';
 import { withBase } from '../../../lib/paths';
+import { getPublishedResearch, getResearchCategories } from '../../../lib/research';
 
 export async function getStaticPaths(){
-  const entries=await getCollection('research',({data})=>!data.draft);
-  const categories=[...new Set(entries.map(e=>e.data.category))];
+  const entries=await getPublishedResearch();
+  const categories=getResearchCategories(entries);
   return categories.map(category=>({
     params:{category},
-    props:{category,entries:entries.filter(e=>e.data.category===category).sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf())}
+    props:{category,entries:entries.filter(entry=>entry.data.category===category)}
   }));
 }
 const {category,entries}=Astro.props;
@@ -28,9 +28,7 @@ const {category,entries}=Astro.props;
   </header>
   <section class="institution-container py-12 md:py-16">
     <div class="grid gap-6 md:grid-cols-2">{entries.map(entry=>
-      <ResearchCard title={entry.data.title} category={entry.data.category} summary={entry.data.summary}
-        reportNumber={entry.data.reportNumber} date={entry.data.date}
-        href={withBase('research/'+entry.id+'/')}/>
+      <ResearchCard entry={entry} href={withBase('research/'+entry.id+'/')}/>
     )}</div>
   </section>
 </BaseLayout>

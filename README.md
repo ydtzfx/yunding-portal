@@ -4,9 +4,9 @@
 
 ## Current release
 
-**v1.1.0 — Operational Complete**
+**v1.1.1 — Contract Aligned**
 
-当前版本在 Institutional Grade 基线上进一步完成前端与后台治理封顶：研究内容具备关系完整性与引用完整性门禁，生产构建生成 release audit manifest，并建立来源健康、生产 uptime 与恢复快照工作流。
+当前版本在 Operational Complete 基线上完成前端与后端研究契约对齐：所有公开研究页面共享同一发布数据层，静态研究 catalog、页面渲染与 release audit manifest 由 CI 自动三方对账，阻止 schema/展示漂移。
 
 ## 技术栈
 
@@ -43,7 +43,8 @@ npm run release:manifest
 
 - `npm run content:check`：报告编号、作者/相关阅读关系、附件、日期、来源与正文引用完整性；
 - `npm run qa`：生成后的 production artifact 链接、SEO、品牌资产、响应式与静态预算；
-- `npm run release:manifest`：生成机器可读的生产文件/报告 SHA-256 审计清单。
+- `npm run release:manifest`：生成机器可读的生产文件/报告 SHA-256 审计清单；
+- `npm run contract:check`：对账后端 release manifest、静态 research catalog 与最终 HTML 渲染。
 
 ## 研究发布
 
