@@ -3,16 +3,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { company } from '../data/company';
 import { withBase } from '../lib/paths';
 ---
-<BaseLayout title="首页">
+<BaseLayout title="首页" description="芸鼎投资研究院发布宏观策略、行业研究与资产配置相关研究内容。">
   <header class="bg-slate-900 text-white">
     <div class="max-w-6xl mx-auto px-6 py-24 text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">{company.tagline}</h1>
-      <p class="text-lg text-slate-300 max-w-2xl mx-auto">以严谨的量化与基本面研究，为机构与高净值客户提供宏观策略、行业分析与资产配置解决方案。</p>
+      <p class="text-lg text-slate-300 max-w-2xl mx-auto">围绕宏观政策、行业趋势与资产配置发布可追溯来源、明确风险边界的研究内容。</p>
       <a href={withBase('research/')} class="inline-block mt-8 bg-amber-500 text-slate-900 font-semibold px-6 py-3 rounded-lg">查看最新研究</a>
     </div>
   </header>
   <section class="max-w-6xl mx-auto px-6 py-16">
-    <h2 class="text-2xl font-bold mb-8 text-center">核心业务</h2>
-    <div class="grid md:grid-cols-3 gap-8">{['宏观策略研究','行业与个股研究','资产配置咨询'].map(x=><div class="bg-white rounded-xl shadow p-6"><h3 class="font-semibold text-lg">{x}</h3></div>)}</div>
+    <h2 class="text-2xl font-bold mb-8 text-center">研究方向</h2>
+    <div class="grid md:grid-cols-3 gap-8">{['宏观策略研究','行业与公司研究','资产配置研究'].map(x=><div class="bg-white rounded-xl shadow p-6"><h3 class="font-semibold text-lg">{x}</h3></div>)}</div>
   </section>
 </BaseLayout>

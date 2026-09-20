@@ -1,4 +1,14 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'; import {team} from '../data/team';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/paths';
 ---
-<BaseLayout title="团队介绍"><section class="max-w-5xl mx-auto px-6 py-16"><h1 class="text-3xl font-bold mb-8">团队介绍</h1><div class="grid md:grid-cols-3 gap-8">{team.map(m=><div class="bg-white rounded-xl shadow p-6"><h3 class="font-semibold">{m.role}</h3><p class="text-slate-500 text-sm mt-2">{m.bio}</p></div>)}</div></section></BaseLayout>
+<BaseLayout title="研究团队" description="芸鼎投资研究院公开署名与团队信息说明。">
+  <section class="max-w-4xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold mb-6">研究团队</h1>
+    <div class="bg-white rounded-xl shadow p-8 space-y-4 text-slate-600 leading-7">
+      <p>当前公开研究由“芸鼎投资研究院”作为研究内容发布方署名。每篇正式报告均在详情页展示作者标识、报告编号、发布日期、更新时间与资料来源。</p>
+      <p>个人研究成员的姓名、职务、教育与从业履历将在完成身份及履历核验后公开。在核验完成前，本站不展示占位人物、虚构职位或未经确认的专业资历。</p>
+      <a class="inline-block text-amber-700 font-medium hover:underline" href={withBase('research/authors/yunding-research-institute/')}>查看公开作者档案 →</a>
+    </div>
+  </section>
+</BaseLayout>
