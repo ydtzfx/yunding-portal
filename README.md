@@ -4,9 +4,9 @@
 
 ## Current release
 
-**v1.1.1 — Contract Aligned**
+**v1.1.2 — Public Company Info**
 
-当前版本在 Operational Complete 基线上完成前端与后端研究契约对齐：所有公开研究页面共享同一发布数据层，静态研究 catalog、页面渲染与 release audit manifest 由 CI 自动三方对账，阻止 schema/展示漂移。
+当前版本在 Contract Aligned 基线上加入企业方明确提供并授权公开的办公地址、电话、邮箱与ICP备案信息，并通过统一数据源和 production QA 防止 Contact/Footer 信息漂移。
 
 ## 技术栈
 
@@ -59,6 +59,18 @@ npm run release:manifest
 ## 可信度与信息公开
 
 机构法律主体、监管身份、团队履历、联系方式、客户/AUM/业绩/奖项等信息遵守 **No evidence → no public claim** 原则。验证要求见 `docs/institution-verification.md`。
+
+## 公开企业信息
+
+以下信息由企业方明确提供并授权本站公开：
+
+- 办公地址：广州市天河区中山大道科韵路102号8楼C0161
+- 电话：13503042560
+- 邮箱：gz@ydtzfx.com
+- ICP备案：粤ICP备20026282号
+- 工信部备案查询：https://beian.miit.gov.cn/
+
+这些公开联系与备案信息不用于推断尚未核验的法律主体名称、统一社会信用代码、监管资质或金融业务许可。
 
 ## 安全与运营
 

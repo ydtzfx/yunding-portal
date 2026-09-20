@@ -16,11 +16,12 @@ Secondary web pages, search results, social profiles, screenshots, marketing cop
 | Unified social credit code / registration number | Not supplied | Current official registry or licence |
 | Relationship between legal entity and “芸鼎投资研究院” brand | Not supplied | Trademark/brand authorization, corporate statement, or governing document |
 | Registered address | Not supplied | Current official registry |
-| Operating address | Not supplied | Lease/business document plus owner confirmation |
+| Operating address | Owner-confirmed for public display: 广州市天河区中山大道科韵路102号8楼C0161 (2026-09-20) | Lease/business document plus owner confirmation for independent verification |
 | Official website/domain ownership | Not supplied | DNS/registrar/admin proof or verified corporate control |
-| Official email | Not supplied | Domain-controlled mailbox verification |
-| Official telephone | Not supplied | Owner confirmation and call/SMS verification |
-| Financial/regulatory licences, registrations, filings | Not supplied | Relevant regulator/database record |
+| Official email | Owner-confirmed for public display: `gz@ydtzfx.com` (2026-09-20) | Domain-controlled mailbox verification for independent verification |
+| Official telephone | Owner-confirmed for public display: `13503042560` (2026-09-20) | Call/SMS verification for independent verification |
+| ICP filing | Owner-confirmed for public display: 粤ICP备20026282号 (2026-09-20); public query: `https://beian.miit.gov.cn/` | Official MIIT filing query for independent verification |
+| Financial/regulatory licences, registrations, filings other than ICP | Not supplied | Relevant regulator/database record |
 | Permitted service scope | Not verified | Legal/compliance review against actual registrations/licences |
 | Team member names and roles | Not supplied | Identity + employment/appointment confirmation |
 | Education, certifications, years of experience | Not supplied | Verifiable credential/employment evidence |
@@ -37,7 +38,8 @@ Until verification is complete, the portal may publish:
 - research articles actually published by the portal;
 - research methodology and publication rules;
 - report metadata and sources;
-- general risk disclosures.
+- general risk disclosures;
+- owner-confirmed public office address, telephone, email, and ICP filing number.
 
 Until verification is complete, the portal must not publish as established fact:
 - legal-entity status;
@@ -45,4 +47,17 @@ Until verification is complete, the portal must not publish as established fact:
 - named individual staff biographies;
 - specific client/service claims;
 - performance, award, scale, AUM, or track-record claims;
-- unverified email, phone, or physical address.
+- legal-entity or regulatory claims inferred solely from the published contact/ICP information.
+
+
+## Owner-confirmed public information — 2026-09-20
+
+The site owner explicitly supplied and authorized publication of the following information:
+
+- Operating address: 广州市天河区中山大道科韵路102号8楼C0161
+- Telephone: 13503042560
+- Email: gz@ydtzfx.com
+- ICP filing: 粤ICP备20026282号
+- MIIT filing-system link: https://beian.miit.gov.cn/
+
+This status means the information is authorized by the site owner for public display. It does **not** by itself establish or substitute for independent verification of the legal entity name, unified social credit code, registered address, regulatory licences, or permitted financial-service scope.

@@ -14,6 +14,10 @@ const mark=withBase('brand/logo-mark.svg');
         </div>
       </div>
       <p class="max-w-xl text-sm leading-7">{company.description}</p>
+      <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-xs">
+        <a class="transition hover:text-gold-400" href={'tel:'+company.contact.phone}>{company.contact.phone}</a>
+        <a class="transition hover:text-gold-400" href={'mailto:'+company.contact.email}>{company.contact.email}</a>
+      </div>
     </div>
     <div class="md:text-right">
       <div class="mb-4 flex flex-wrap gap-x-5 gap-y-2 text-sm md:justify-end">
@@ -29,6 +33,7 @@ const mark=withBase('brand/logo-mark.svg');
       </div>
       <p class="text-xs leading-6">本网站研究内容仅供信息与研究讨论，不构成投资建议、收益承诺或个性化资产配置建议。</p>
       <p class="mt-2 text-xs">© 2026 {company.englishName}. All rights reserved.</p>
+      <p class="mt-2 text-xs"><a class="transition hover:text-gold-400" href={company.filing.url} target="_blank" rel="noreferrer">{company.filing.number}</a></p>
     </div>
   </div>
 </footer>
