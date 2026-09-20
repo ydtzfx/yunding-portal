@@ -23,8 +23,9 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).toStri
     <slot name="head"/>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
     <Header/>
-    <main><slot/></main>
+    <main id="main-content" tabindex="-1"><slot/></main>
     <Footer/>
   </body>
 </html>
