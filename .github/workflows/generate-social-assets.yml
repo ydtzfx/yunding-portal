@@ -1,0 +1,34 @@
+name: Generate Social Assets
+on:
+  push:
+    branches: [fix/frontend-social-assets]
+    paths:
+      - .github/workflows/generate-social-assets.yml
+      - public/brand/og-default.svg
+      - public/brand/favicon.svg
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install SVG renderer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin
+      - name: Render social assets
+        run: |
+          rsvg-convert -w 1200 -h 630 public/brand/og-default.svg -o public/brand/og-default.png
+          rsvg-convert -w 180 -h 180 public/brand/favicon.svg -o public/brand/apple-touch-icon.png
+      - name: Commit generated binaries
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/brand/og-default.png public/brand/apple-touch-icon.png
+          git diff --cached --quiet && exit 0
+          git commit -m "feat(brand): add PNG social and touch assets"
+          git push
