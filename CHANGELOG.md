@@ -2,6 +2,19 @@
 
 All notable production releases are documented in this file.
 
+## [1.1.2] - 2026-09-20
+
+### Public Company Info
+
+- Added a canonical public-company data source for owner-confirmed office address, telephone, email and ICP filing information.
+- Published the office address, clickable telephone/email links and ICP filing on the Contact page.
+- Added official telephone/email and the ICP filing link to the site-wide footer.
+- Linked the filing number to the MIIT ICP/IP Address/Domain Information Filing Management System.
+- Updated About, Legal and Privacy wording so public-contact state is consistent across the site.
+- Updated the institution verification register to distinguish owner-confirmed public information from independently verified legal/regulatory identity.
+- Added blocking production QA to ensure Contact/Footer cannot drift from the canonical public-company data source.
+- No legal entity name, unified social credit code, registered address, regulatory licence or financial-service permission was inferred or added.
+
 ## [1.1.1] - 2026-09-20
 
 ### Contract Aligned
