@@ -1,12 +1,13 @@
 ---
 import { company } from '../data/company';
 import { withBase } from '../lib/paths';
+const mark=withBase('brand/logo-mark.svg');
 ---
 <footer class="mt-24 border-t border-white/10 bg-ink-950 text-white/55">
   <div class="institution-container grid gap-10 py-12 md:grid-cols-[1.2fr_.8fr]">
     <div>
       <div class="mb-3 flex items-center gap-3">
-        <span class="grid size-9 place-items-center border border-gold-400/50 text-sm font-semibold text-gold-400">芸</span>
+        <img src={mark} alt="" width="36" height="36" class="size-9" aria-hidden="true"/>
         <div>
           <div class="font-semibold text-white">{company.name}</div>
           <div class="text-xs tracking-wide text-white/45">{company.englishName}</div>
@@ -16,15 +17,15 @@ import { withBase } from '../lib/paths';
     </div>
     <div class="md:text-right">
       <div class="mb-4 flex flex-wrap gap-x-5 gap-y-2 text-sm md:justify-end">
-        <a class="hover:text-gold-400" href={withBase('research/')}>研究观点</a>
-        <a class="hover:text-gold-400" href={withBase('about/')}>关于我们</a>
-        <a class="hover:text-gold-400" href={withBase('methodology/')}>研究方法</a>
-        <a class="hover:text-gold-400" href={withBase('contact/')}>联系说明</a>
+        <a class="transition hover:text-gold-400" href={withBase('research/')}>研究观点</a>
+        <a class="transition hover:text-gold-400" href={withBase('about/')}>关于我们</a>
+        <a class="transition hover:text-gold-400" href={withBase('methodology/')}>研究方法</a>
+        <a class="transition hover:text-gold-400" href={withBase('contact/')}>联系说明</a>
       </div>
       <div class="mb-4 flex flex-wrap gap-x-4 gap-y-2 text-xs md:justify-end">
-        <a class="hover:text-gold-400" href={withBase('legal/')}>使用条款</a>
-        <a class="hover:text-gold-400" href={withBase('privacy/')}>隐私说明</a>
-        <a class="hover:text-gold-400" href={withBase('disclosure/')}>研究披露</a>
+        <a class="transition hover:text-gold-400" href={withBase('legal/')}>使用条款</a>
+        <a class="transition hover:text-gold-400" href={withBase('privacy/')}>隐私说明</a>
+        <a class="transition hover:text-gold-400" href={withBase('disclosure/')}>研究披露</a>
       </div>
       <p class="text-xs leading-6">本网站研究内容仅供信息与研究讨论，不构成投资建议、收益承诺或个性化资产配置建议。</p>
       <p class="mt-2 text-xs">© 2026 {company.englishName}. All rights reserved.</p>

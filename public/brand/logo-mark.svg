@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">芸鼎投资研究院标志</title>
+  <rect width="64" height="64" rx="4" fill="#08141e"/>
+  <rect x="5.5" y="5.5" width="53" height="53" rx="1.5" fill="none" stroke="#c9a667" stroke-width="1"/>
+  <path d="M19 22h26M23 17l3 5m12-5-3 5M18 30h28M22 30v15m20-15v15M22 37h20" fill="none" stroke="#c9a667" stroke-width="2.2" stroke-linecap="square"/>
+  <circle cx="32" cy="48" r="2" fill="#c9a667"/>
+</svg>
