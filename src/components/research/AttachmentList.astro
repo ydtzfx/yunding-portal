@@ -1,0 +1,28 @@
+---
+import { withBase } from '../../lib/paths';
+interface Attachment { title:string; href:string; kind:'report'|'data'|'appendix'|'other'; format:string; size?:string; description?:string }
+interface Props { attachments:Attachment[] }
+const {attachments}=Astro.props;
+const labels={report:'报告文件',data:'数据文件',appendix:'附录',other:'附件'};
+const external=(href:string)=>/^https?:\/\//i.test(href);
+---
+{attachments.length>0 && <section class="mt-14 border-t border-[#d8d2c8] pt-8" aria-labelledby="attachments-heading">
+  <div class="institution-eyebrow mb-3">Downloads</div>
+  <h2 id="attachments-heading" class="font-serif text-2xl font-bold text-ink-950">研究附件</h2>
+  <div class="mt-6 grid gap-3">
+    {attachments.map(item=><a
+      class="institution-card grid gap-2 p-5 hover:border-gold-400/70"
+      href={external(item.href) ? item.href : withBase(item.href)}
+      target={external(item.href) ? '_blank' : undefined}
+      rel={external(item.href) ? 'noreferrer' : undefined}
+    >
+      <div class="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[.08em] text-slate-400">
+        <span class="font-semibold text-gold-700">{labels[item.kind]}</span>
+        <span>{item.format}</span>
+        {item.size && <span>{item.size}</span>}
+      </div>
+      <div class="font-semibold text-ink-950">{item.title}</div>
+      {item.description && <p class="text-sm leading-6 text-slate-600">{item.description}</p>}
+    </a>)}
+  </div>
+</section>}

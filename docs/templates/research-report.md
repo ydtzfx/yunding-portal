@@ -11,6 +11,16 @@ summary: 80–150 字摘要
 description: 搜索引擎描述
 featured: false
 related: []
+highlights:
+  - 核心观点 1
+  - 核心观点 2
+attachments:
+  - title: 附件标题
+    href: research-assets/example.pdf
+    kind: report
+    format: PDF
+    size: 1.2 MB
+    description: 可选说明
 sources:
   - title: 来源标题
     publisher: 发布机构

@@ -1,0 +1,30 @@
+---
+interface Props {
+  title:string;
+  columns:string[];
+  rows:Array<Array<string|number>>;
+  source?:string;
+  sourceUrl?:string;
+  asOf?:string;
+  unit?:string;
+}
+const {title,columns,rows,source,sourceUrl,asOf,unit}=Astro.props;
+---
+<figure class="my-10">
+  <figcaption class="mb-3">
+    <h3 class="font-serif text-lg font-bold text-ink-950">{title}</h3>
+    {(unit || asOf) && <p class="mt-1 text-xs text-slate-400">{unit && <span>单位：{unit}</span>}{unit && asOf && <span> · </span>}{asOf && <span>截至：{asOf}</span>}</p>}
+  </figcaption>
+  <div class="overflow-x-auto border border-[#d8d2c8] bg-white">
+    <table class="w-full min-w-[36rem] border-collapse text-left text-sm">
+      <thead class="bg-[#f3efe6] text-ink-950">
+        <tr>{columns.map(column=><th scope="col" class="border-b border-[#d8d2c8] px-4 py-3 font-semibold">{column}</th>)}</tr>
+      </thead>
+      <tbody>{rows.map(row=><tr class="border-b border-[#ebe7df] last:border-0">{row.map((cell,index)=>index===0
+        ? <th scope="row" class="px-4 py-3 font-medium text-ink-900">{cell}</th>
+        : <td class="px-4 py-3 text-slate-600">{cell}</td>
+      )}</tr>)}</tbody>
+    </table>
+  </div>
+  {source && <p class="mt-2 text-xs text-slate-500">来源：{sourceUrl ? <a class="institution-link" href={sourceUrl} target="_blank" rel="noreferrer">{source}</a> : source}</p>}
+</figure>
