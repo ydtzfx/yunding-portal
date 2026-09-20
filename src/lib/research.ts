@@ -98,3 +98,12 @@ export function toResearchCatalogItem(entry: PublishedResearchEntry): ResearchCa
     attachmentCount: entry.data.attachments.length,
   };
 }
+
+
+export function toResearchCatalog(entries: PublishedResearchEntry[]) {
+  return entries.map(toResearchCatalogItem);
+}
+
+export function serializeJsonForHtml(value: unknown) {
+  return JSON.stringify(value).replace(/</g, '\\u003c');
+}
