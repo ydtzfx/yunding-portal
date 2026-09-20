@@ -134,3 +134,41 @@
     text-underline-offset: 3px;
   }
 }
+
+
+@layer components {
+  .skip-link {
+    position: fixed;
+    top: .75rem;
+    left: .75rem;
+    z-index: 100;
+    transform: translateY(-200%);
+    background: var(--color-gold-400);
+    color: var(--color-ink-950);
+    padding: .65rem .9rem;
+    font-size: .875rem;
+    font-weight: 700;
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media print {
+  header, footer, .skip-link { display: none !important; }
+  html, body { background: white !important; color: black !important; }
+  a { color: black !important; text-decoration: none !important; }
+  .research-prose { font-size: 10.5pt; line-height: 1.65; }
+  article { break-inside: auto; }
+}
