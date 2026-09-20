@@ -2,13 +2,27 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/paths';
 ---
-<BaseLayout title="研究团队" description="芸鼎投资研究院公开署名与团队信息说明。">
-  <section class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-6">研究团队</h1>
-    <div class="bg-white rounded-xl shadow p-8 space-y-4 text-slate-600 leading-7">
-      <p>当前公开研究由“芸鼎投资研究院”作为研究内容发布方署名。每篇正式报告均在详情页展示作者标识、报告编号、发布日期、更新时间与资料来源。</p>
-      <p>个人研究成员的姓名、职务、教育与从业履历将在完成身份及履历核验后公开。在核验完成前，本站不展示占位人物、虚构职位或未经确认的专业资历。</p>
-      <a class="inline-block text-amber-700 font-medium hover:underline" href={withBase('research/authors/yunding-research-institute/')}>查看公开作者档案 →</a>
+<BaseLayout title="研究团队" description="芸鼎投资研究院公开署名、作者身份与人员信息披露原则。">
+  <header class="border-b border-[#d8d2c8] bg-[#f1eee7]">
+    <div class="institution-container py-14 md:py-18">
+      <div class="institution-eyebrow">Authors & Team</div>
+      <h1 class="mt-5 font-serif text-4xl font-bold text-ink-950 md:text-5xl">研究署名与团队信息</h1>
+      <p class="mt-5 max-w-3xl text-base leading-8 text-slate-600">当前公开研究以“芸鼎投资研究院”作为内容发布方署名。个人研究成员信息只在身份和履历完成核验后公开。</p>
+    </div>
+  </header>
+  <section class="institution-container py-14 md:py-20">
+    <div class="grid gap-8 md:grid-cols-2">
+      <article class="institution-card p-7">
+        <div class="institution-eyebrow">Public Author</div>
+        <h2 class="mt-4 font-serif text-2xl font-bold text-ink-950">芸鼎投资研究院</h2>
+        <p class="mt-4 text-sm leading-7 text-slate-600">正式报告展示作者标识、报告编号、首次发布日期、实质更新时间和结构化资料来源。</p>
+        <a class="institution-link mt-5 inline-block text-sm font-semibold" href={withBase('research/authors/yunding-research-institute/')}>查看公开作者档案 →</a>
+      </article>
+      <article class="border border-[#d8d2c8] bg-[#f3efe6] p-7">
+        <div class="institution-eyebrow">Verification Gate</div>
+        <h2 class="mt-4 font-serif text-2xl font-bold text-ink-950">个人履历披露门禁</h2>
+        <p class="mt-4 text-sm leading-7 text-slate-600">姓名、职务、教育经历、职业资格和从业年限等信息需要对应的身份、任职或凭证证据。核验完成前，本站不展示占位人物、虚构职位或未经确认的专业资历。</p>
+      </article>
     </div>
   </section>
 </BaseLayout>
