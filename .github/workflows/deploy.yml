@@ -32,6 +32,7 @@ jobs:
       - run: npm run qa
       - run: npm run release:manifest
       - run: test -s dist/release-audit.json
+      - run: npm run contract:check
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
