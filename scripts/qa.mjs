@@ -186,3 +186,11 @@ if (assetSet.has('index.html')) {
   if (!homeHtml.includes(COMPANY_PUBLIC.filing.number)) fail(homePath, 'ICP filing missing from site-wide footer');
   if (!homeHtml.includes(COMPANY_PUBLIC.filing.url)) fail(homePath, 'MIIT filing link missing from site-wide footer');
 }
+
+
+if (errors.length) {
+  console.error(`\nCompany publication contract failed with ${errors.length} issue(s):`);
+  for (const error of errors) console.error('✗', error);
+  process.exit(1);
+}
+console.log('✓ Owner-confirmed company contact and ICP publication contract passed.');
