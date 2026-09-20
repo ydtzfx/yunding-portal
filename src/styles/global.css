@@ -172,3 +172,111 @@
   .research-prose { font-size: 10.5pt; line-height: 1.65; }
   article { break-inside: auto; }
 }
+
+
+@layer components {
+  .page-header {
+    border-bottom: 1px solid #d8d2c8;
+    background: #f1eee7;
+  }
+
+  .page-header-inner {
+    width: min(100% - 2rem, 72rem);
+    margin-inline: auto;
+    padding-block: clamp(3rem, 6vw, 5rem);
+  }
+
+  .page-title {
+    margin-top: 1rem;
+    color: var(--color-ink-950);
+    font-family: var(--font-serif);
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -.025em;
+  }
+
+  .page-intro {
+    margin-top: 1.25rem;
+    max-width: 48rem;
+    color: #5f6d75;
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  .button-primary,
+  .button-secondary {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: .7rem 1rem;
+    font-size: .875rem;
+    font-weight: 700;
+    transition: background-color .18s ease, border-color .18s ease, color .18s ease, transform .18s ease;
+  }
+
+  .button-primary {
+    background: var(--color-ink-950);
+    color: white;
+  }
+
+  .button-primary:hover {
+    background: var(--color-ink-900);
+    transform: translateY(-1px);
+  }
+
+  .button-secondary {
+    border: 1px solid #cfc8bc;
+    color: var(--color-ink-900);
+  }
+
+  .button-secondary:hover {
+    border-color: var(--color-gold-500);
+    color: var(--color-gold-700);
+  }
+
+  .filter-control {
+    min-height: 2.75rem;
+    width: 100%;
+    border: 1px solid #cbc4b8;
+    background: white;
+    padding: .65rem .8rem;
+    color: var(--color-ink-900);
+    font-size: .875rem;
+  }
+
+  .filter-control:hover {
+    border-color: var(--color-gold-500);
+  }
+
+  .filter-control:focus {
+    border-color: var(--color-gold-500);
+    outline: 2px solid color-mix(in srgb, var(--color-gold-500) 35%, transparent);
+    outline-offset: 2px;
+  }
+
+  .mobile-nav > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-nav[open] > summary {
+    border-color: color-mix(in srgb, var(--color-gold-400) 60%, transparent);
+    color: var(--color-gold-400);
+  }
+
+  .archive-row {
+    display: grid;
+    gap: .65rem;
+    border-bottom: 1px solid #ded9cf;
+    padding-block: 1rem;
+  }
+
+  @media (min-width: 48rem) {
+    .archive-row {
+      grid-template-columns: 8rem minmax(0, 1fr) auto;
+      align-items: baseline;
+      gap: 1.5rem;
+    }
+  }
+}
