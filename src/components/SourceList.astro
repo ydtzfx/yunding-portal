@@ -3,15 +3,19 @@ interface Source { title:string; publisher:string; url:string; date?:string; acc
 interface Props { sources:Source[] }
 const {sources}=Astro.props;
 ---
-{sources.length>0 && <section class="mt-12 pt-8 border-t border-slate-200" aria-labelledby="references-heading">
-  <h2 id="references-heading" class="text-xl font-semibold mb-4">资料来源</h2>
-  <ol class="list-decimal pl-5 space-y-3 text-sm text-slate-600">
-    {sources.map((source,index)=><li id={'ref-'+(index+1)}>
-      <span class="font-medium text-slate-800">{source.publisher}</span>
-      {' — '}
-      <a class="underline break-words" href={source.url} rel="noreferrer" target="_blank">{source.title}</a>
-      {source.date && <span>，{source.date}</span>}
-      {source.accessed && <span>（访问：{source.accessed}）</span>}
+{sources.length>0 && <section class="mt-16 border-t border-[#d8d2c8] pt-8" aria-labelledby="references-heading">
+  <div class="institution-eyebrow mb-3">References</div>
+  <h2 id="references-heading" class="font-serif text-2xl font-bold text-ink-950">资料来源</h2>
+  <ol class="mt-6 space-y-4">
+    {sources.map((source,index)=><li id={'ref-'+(index+1)} class="grid grid-cols-[2rem_1fr] gap-2 text-sm leading-6 text-slate-600">
+      <span class="font-serif text-gold-700">[{index+1}]</span>
+      <span>
+        <strong class="font-semibold text-ink-900">{source.publisher}</strong>
+        {' — '}
+        <a class="institution-link break-words" href={source.url} rel="noreferrer" target="_blank">{source.title}<span class="sr-only">（新窗口）</span></a>
+        {source.date && <span>，{source.date}</span>}
+        {source.accessed && <span class="text-slate-400">（访问：{source.accessed}）</span>}
+      </span>
     </li>)}
   </ol>
 </section>}
