@@ -17,7 +17,9 @@
     "qa": "node scripts/qa.mjs",
     "verify": "npm run content:check && npm run build && npm run qa && npm run release:manifest",
     "content:check": "node scripts/content-integrity.mjs",
-    "release:manifest": "node scripts/release-audit.mjs"
+    "release:manifest": "node scripts/release-audit.mjs",
+    "ops:sources": "node scripts/source-health.mjs",
+    "ops:uptime": "node scripts/uptime-check.mjs"
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
