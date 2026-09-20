@@ -1,17 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { withBase } from '../../lib/paths';
+import { getPublishedResearch, groupResearchByYear } from '../../lib/research';
 
-const entries=(await getCollection('research',({data})=>!data.draft)).sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
-const groups=Object.groupBy(entries,e=>String(e.data.date.getFullYear()));
+const entries=await getPublishedResearch();
+const groups=groupResearchByYear(entries);
 ---
 <BaseLayout title="研究归档" description="按年份浏览芸鼎投资研究院已发布研究。">
   <header class="page-header">
     <div class="page-header-inner">
       <div class="institution-eyebrow">Research Archive</div>
       <h1 class="page-title">研究归档</h1>
-      <p class="page-intro">按首次发布日期归档全部正式研究。报告的后续实质修订通过详情页 Updated 日期记录。</p>
+      <p class="page-intro">按首次发布日期归档全部正式研究。只有后端存在实质修订日期时，详情页才显示 Updated。</p>
       <div class="mt-7"><a class="button-secondary" href={withBase('research/')}>返回研究库</a></div>
     </div>
   </header>
@@ -24,13 +24,14 @@ const groups=Object.groupBy(entries,e=>String(e.data.date.getFullYear()));
           <span class="text-xs text-slate-500">{items?.length ?? 0} 篇</span>
         </div>
         <div>{items?.map(entry=>
-          <article class="archive-row">
+          <article class="archive-row" data-report-row={entry.id}>
             <time class="text-xs font-semibold tracking-wide text-slate-400" datetime={entry.data.date.toISOString()}>{entry.data.date.toISOString().slice(0,10)}</time>
             <div>
               <a class="font-serif text-lg font-bold leading-7 text-ink-950 hover:text-gold-700" href={withBase('research/'+entry.id+'/')}>{entry.data.title}</a>
               <div class="mt-1 flex flex-wrap gap-x-3 text-xs text-slate-500">
                 <span>{entry.data.category}</span>
-                {entry.data.reportNumber && <span>{entry.data.reportNumber}</span>}
+                <span>{entry.data.reportNumber}</span>
+                {entry.data.updated && <span>更新 {entry.data.updated.toISOString().slice(0,10)}</span>}
               </div>
             </div>
             <a class="text-xs font-semibold text-ink-800 hover:text-gold-700" href={withBase('research/'+entry.id+'/')}>阅读全文 →</a>
