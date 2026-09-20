@@ -14,6 +14,11 @@ summary: QT 结束后，美联储通过准备金管理购买维持充足准备�
 description: QT 终结并不等同于 QE 重启。本文从准备金管理购买、美国财政债务、通胀与央行黄金配置出发，分析美联储资产负债表新机制及其对黄金定价的影响。
 featured: false
 related: []
+highlights:
+  - QT 已结束，RMP 属于准备金管理工具，不应直接等同于传统 QE。
+  - 美国财政约束继续上升，但现有公开证据不足以把 RMP 认定为财政赤字货币化或“财政主导”既成事实。
+  - 黄金的中长期配置逻辑更适合采用实际利率、美元、通胀、财政约束、地缘风险与央行需求的多因子框架，而非单一流动性因果链。
+attachments: []
 sources:
   - title: Federal Reserve Balance Sheet Developments
     publisher: Federal Reserve Board
