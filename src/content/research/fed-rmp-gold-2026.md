@@ -2,7 +2,6 @@
 title: 从 QT 终结到准备金管理购买：美联储资产负债表机制变化与黄金定价再评估
 reportNumber: YD-MACRO-2026-001
 date: 2026-09-19
-updated: 2026-09-19
 category: 宏观策略
 tags:
   - 美联储
