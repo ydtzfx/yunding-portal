@@ -1,0 +1,14 @@
+---
+interface Props { highlights:string[] }
+const {highlights}=Astro.props;
+---
+{highlights.length>0 && <aside class="mb-12 border border-[#d8d2c8] bg-[#f3efe6] p-6 md:p-8" aria-labelledby="highlights-heading">
+  <div class="institution-eyebrow mb-3">Key Findings</div>
+  <h2 id="highlights-heading" class="font-serif text-2xl font-bold text-ink-950">核心观点</h2>
+  <ol class="mt-6 grid gap-5">
+    {highlights.map((item,index)=><li class="grid grid-cols-[2rem_1fr] gap-3 text-sm leading-7 text-slate-700">
+      <span class="font-serif text-lg text-gold-700">{String(index+1).padStart(2,'0')}</span>
+      <span>{item}</span>
+    </li>)}
+  </ol>
+</aside>}
