@@ -1,9 +1,27 @@
 ---
 import { company } from '../data/company';
+import { withBase } from '../lib/paths';
 ---
-<footer class="bg-slate-900 text-slate-400 text-sm py-8 mt-16">
-  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-4">
-    <div><div class="text-white font-semibold mb-1">{company.name}</div><div>{company.description}</div></div>
-    <div class="md:text-right"><div>© 2026 {company.englishName}. All rights reserved.</div><div>本网站研究内容仅供信息与研究讨论，不构成投资建议或收益承诺。</div></div>
+<footer class="mt-24 border-t border-white/10 bg-ink-950 text-white/55">
+  <div class="institution-container grid gap-10 py-12 md:grid-cols-[1.2fr_.8fr]">
+    <div>
+      <div class="mb-3 flex items-center gap-3">
+        <span class="grid size-9 place-items-center border border-gold-400/50 text-sm font-semibold text-gold-400">芸</span>
+        <div>
+          <div class="font-semibold text-white">{company.name}</div>
+          <div class="text-xs tracking-wide text-white/45">{company.englishName}</div>
+        </div>
+      </div>
+      <p class="max-w-xl text-sm leading-7">{company.description}</p>
+    </div>
+    <div class="md:text-right">
+      <div class="mb-4 flex flex-wrap gap-x-5 gap-y-2 text-sm md:justify-end">
+        <a class="hover:text-gold-400" href={withBase('research/')}>研究观点</a>
+        <a class="hover:text-gold-400" href={withBase('about/')}>关于我们</a>
+        <a class="hover:text-gold-400" href={withBase('contact/')}>联系说明</a>
+      </div>
+      <p class="text-xs leading-6">本网站研究内容仅供信息与研究讨论，不构成投资建议、收益承诺或个性化资产配置建议。</p>
+      <p class="mt-2 text-xs">© 2026 {company.englishName}. All rights reserved.</p>
+    </div>
   </div>
 </footer>
