@@ -15,6 +15,15 @@ const sourceSchema = z.object({
   accessed: citationDate.optional(),
 });
 
+const attachmentSchema = z.object({
+  title: z.string(),
+  href: z.string().min(1),
+  kind: z.enum(['report', 'data', 'appendix', 'other']),
+  format: z.string(),
+  size: z.string().optional(),
+  description: z.string().optional(),
+});
+
 const researchSchema = z.object({
   title: z.string(),
   reportNumber: z.string().regex(/^YD-[A-Z]+-\d{4}-\d{3}$/).optional(),
@@ -27,6 +36,8 @@ const researchSchema = z.object({
   description: z.string().optional(),
   featured: z.boolean().default(false),
   related: z.array(z.string()).default([]),
+  highlights: z.array(z.string()).max(5).default([]),
+  attachments: z.array(attachmentSchema).default([]),
   sources: z.array(sourceSchema).default([]),
   draft: z.boolean().default(false),
 }).superRefine((data, ctx) => {
