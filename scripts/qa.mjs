@@ -93,8 +93,10 @@ for (const file of htmlFiles) {
     if (target && !htmlSet.has(target.replaceAll(path.sep, '/'))) fail(file, `broken internal link: ${href} -> ${target}`);
   }
 
-  const reportNumber = html.match(/YD-[A-Z]+-\d{4}-\d{3}/)?.[0];
-  if (reportNumber) {
+  const isArticle = /<meta[^>]+property=["']og:type["'][^>]+content=["']article["']/i.test(html)
+    || /<meta[^>]+content=["']article["'][^>]+property=["']og:type["']/i.test(html);
+  if (isArticle) {
+    const reportNumber = html.match(/YD-[A-Z]+-\d{4}-\d{3}/)?.[0] ?? 'article page';
     if (!/<script[^>]+type=["']application\/ld\+json["'][^>]*>[\s\S]*?"@type":"Article"/i.test(html)) fail(file, `${reportNumber} missing Article JSON-LD`);
     if (!/property=["']article:published_time["']/i.test(html)) fail(file, `${reportNumber} missing article:published_time`);
   }
