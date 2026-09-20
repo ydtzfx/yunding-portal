@@ -47,6 +47,9 @@ const researchSchema = z.object({
   if (!data.draft && data.sources.length === 0) {
     ctx.addIssue({ code: 'custom', path: ['sources'], message: 'Published research requires at least one source.' });
   }
+  if (data.updated && data.updated < data.date) {
+    ctx.addIssue({ code: 'custom', path: ['updated'], message: 'Updated date must be on or after publication date.' });
+  }
 });
 
 const research = defineCollection({
