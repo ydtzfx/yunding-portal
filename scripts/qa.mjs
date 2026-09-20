@@ -45,7 +45,7 @@ const all = await walk(DIST);
 const htmlFiles = all.filter(file => file.endsWith('.html'));
 const assetSet = new Set(all.map(file => path.relative(DIST, file).replaceAll(path.sep, '/')));
 const canonicals = new Map();
-const requiredAssets = ['brand/logo-mark.svg','brand/favicon.svg','brand/og-default.svg'];
+const requiredAssets = ['brand/logo-mark.svg','brand/favicon.svg','brand/apple-touch-icon.png','brand/og-default.svg','brand/og-default.png'];
 
 for (const asset of requiredAssets) {
   if (!assetSet.has(asset)) errors.push(`dist: required brand asset missing: ${asset}`);
@@ -89,10 +89,16 @@ for (const file of htmlFiles) {
   if (!iconTag) fail(file, 'missing favicon link');
   else if (attrs(iconTag).href !== BASE + 'brand/favicon.svg') fail(file, `unexpected favicon path: ${attrs(iconTag).href}`);
 
+  if (!/<link[^>]+rel=["']apple-touch-icon["'][^>]+brand\/apple-touch-icon\.png/i.test(html)) fail(file, 'missing apple-touch-icon');
+
   const ogImage = [...html.matchAll(/<meta[^>]+property=["']og:image["'][^>]*>/gi)][0]?.[0]
     ?? [...html.matchAll(/<meta[^>]+content=["'][^"']+["'][^>]+property=["']og:image["'][^>]*>/gi)][0]?.[0];
   if (!ogImage) fail(file, 'missing og:image');
-  else if (!attrs(ogImage).content?.startsWith('https://')) fail(file, `og:image must be absolute: ${attrs(ogImage).content}`);
+  else {
+    const image = attrs(ogImage).content;
+    if (!image?.startsWith('https://')) fail(file, `og:image must be absolute: ${image}`);
+    if (!image?.endsWith('.png')) fail(file, `default social image must be PNG-compatible: ${image}`);
+  }
 
   if (!/<details[^>]+class=["'][^"']*mobile-nav/i.test(html)) fail(file, 'missing mobile navigation');
   if (!/<nav[^>]+aria-label=["']主导航["']/i.test(html)) fail(file, 'missing desktop primary navigation');
