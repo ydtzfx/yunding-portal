@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="研究方法" description="芸鼎投资研究院公开研究的方法、来源层级、事实与判断边界、更新和更正原则。">
+  <header class="border-b border-[#d8d2c8] bg-[#f1eee7]">
+    <div class="institution-container py-14 md:py-18">
+      <div class="institution-eyebrow">Research Methodology</div>
+      <h1 class="mt-5 max-w-3xl font-serif text-4xl font-bold text-ink-950 md:text-5xl">研究方法与发布标准</h1>
+      <p class="mt-5 max-w-3xl text-base leading-8 text-slate-600">本站公开研究以可追溯证据、明确时间点、区分事实与判断、保留反向情景为基本原则。以下规则描述当前实际使用的研究发布流程。</p>
+    </div>
+  </header>
+  <section class="institution-container py-14 md:py-20">
+    <div class="grid gap-px bg-[#d8d2c8] md:grid-cols-2">
+      {[
+        ['01','来源层级','优先使用政府、央行、监管机构、交易所、公司公告及一手统计资料。权威二手资料用于补充解释；社区讨论仅可作为线索或市场情绪背景，不替代事实来源。'],
+        ['02','事实与判断','可核验事实应有来源；因果解释、估值判断和情景推演应明确作为研究分析，不把假设写成已发生事实。'],
+        ['03','时间边界','利率、债务、资产负债表、通胀、市场数据等时点敏感信息必须标注数据日期或报告日期，避免用旧数据表达当前状态。'],
+        ['04','反向证据','研究结论应主动寻找与主叙事相反的重要证据。存在实质反证时，正文需要说明，而不是通过选择性引用回避。'],
+        ['05','更新与更正','正文、核心数据、结论或关键来源发生实质变化时更新报告的 updated 日期。仅修复排版或错别字通常不改变研究更新时间。'],
+        ['06','风险边界','正式报告包含风险提示。报告用于研究与信息讨论，不等同于针对特定个人或机构的投资建议、收益保证或交易指令。']
+      ].map(([n,title,body])=><article class="bg-paper-50 p-7 md:p-8">
+        <div class="font-serif text-sm text-gold-700">{n}</div>
+        <h2 class="mt-4 font-serif text-xl font-bold text-ink-950">{title}</h2>
+        <p class="mt-3 text-sm leading-7 text-slate-600">{body}</p>
+      </article>)}
+    </div>
+    <div class="mt-14 grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
+      <div><div class="institution-eyebrow">Source Hierarchy</div><h2 class="mt-4 font-serif text-2xl font-bold text-ink-950">来源使用顺序</h2></div>
+      <ol class="space-y-4">
+        {[
+          ['A','原始/官方资料','法律法规、监管文件、央行公告、政府统计、交易所和公司原始披露。'],
+          ['B','专业权威资料','国际组织、行业机构及有明确方法论的数据提供方。'],
+          ['C','可信二手报道','用于事件脉络、背景和多方观点，不替代关键原始数据。'],
+          ['D','市场/社区讨论','只作为发现线索、观点样本或情绪背景；需要独立验证。']
+        ].map(([n,title,body])=><li class="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-[#d8d2c8] pb-4">
+          <span class="font-serif text-lg text-gold-700">{n}</span>
+          <div><strong class="text-ink-950">{title}</strong><p class="mt-1 text-sm leading-6 text-slate-600">{body}</p></div>
+        </li>)}
+      </ol>
+    </div>
+    <div class="mt-14 border border-[#d8d2c8] bg-white p-7 md:p-8">
+      <h2 class="font-serif text-2xl font-bold text-ink-950">发布与修订流程</h2>
+      <p class="mt-4 text-sm leading-7 text-slate-600">研究内容从草稿开始，经过来源和事实核验、编辑审阅、风险提示、报告编号与作者绑定后才可解除 draft 状态。解除 draft 后仍需通过自动化构建和发布门禁；生产环境更新后，报告页、来源、元数据和 SEO 结构继续接受产物或公网验收。</p>
+      <p class="mt-4 text-sm leading-7 text-slate-600">如发现重要事实错误或结论所依据的数据发生实质修订，应更正文稿并更新修改日期。历史研究仅代表其发布日期时点可获得的信息与研究判断。</p>
+    </div>
+  </section>
+</BaseLayout>

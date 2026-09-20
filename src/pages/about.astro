@@ -1,13 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/paths';
 ---
-<BaseLayout title="关于我们" description="芸鼎投资研究院的研究发布原则与内容边界。">
-  <section class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold mb-6">关于我们</h1>
-    <div class="space-y-6 text-slate-600 leading-8">
-      <p>芸鼎投资研究院网站用于发布宏观策略、行业研究与资产配置相关研究内容。公开报告采用报告编号、作者标识、发布日期、结构化资料来源与风险提示，以便读者核验关键事实与判断依据。</p>
-      <p>本站区分可核验事实、研究分析与情景判断。涉及政策、统计数据及第三方观点时，优先引用政府、央行、监管机构、交易所、公司公告及其他一手资料。</p>
-      <p>机构法律主体、监管资质、正式办公地址、官方联系渠道及个人团队履历仅在完成相应证据核验后公开，不以未经核验的宣传性信息替代。</p>
+<BaseLayout title="关于我们" description="芸鼎投资研究院的研究发布定位、证据原则与信息公开边界。">
+  <header class="border-b border-[#d8d2c8] bg-[#f1eee7]">
+    <div class="institution-container py-14 md:py-18">
+      <div class="institution-eyebrow">About</div>
+      <h1 class="mt-5 font-serif text-4xl font-bold text-ink-950 md:text-5xl">关于芸鼎投资研究院</h1>
+      <p class="mt-5 max-w-3xl text-base leading-8 text-slate-600">本网站用于发布宏观策略、行业研究与资产配置相关研究内容，并通过明确的作者、编号、日期、资料来源和风险边界提升内容可核验性。</p>
+    </div>
+  </header>
+  <section class="institution-container py-14 md:py-20">
+    <div class="grid gap-10 lg:grid-cols-3">
+      <article><div class="institution-eyebrow">Purpose</div><h2 class="mt-4 font-serif text-2xl font-bold text-ink-950">发布目的</h2><p class="mt-4 text-sm leading-7 text-slate-600">把公开信息转化为结构清晰、来源可追溯、能够接受反证的研究内容，而不是用无法核验的宣传性数字替代研究质量。</p></article>
+      <article><div class="institution-eyebrow">Evidence</div><h2 class="mt-4 font-serif text-2xl font-bold text-ink-950">证据原则</h2><p class="mt-4 text-sm leading-7 text-slate-600">政策、统计数据和第三方观点优先引用一手资料。事实、分析和情景判断在表达上保持边界，时点敏感数据注明日期。</p></article>
+      <article><div class="institution-eyebrow">Identity</div><h2 class="mt-4 font-serif text-2xl font-bold text-ink-950">公开边界</h2><p class="mt-4 text-sm leading-7 text-slate-600">法律主体、监管资质、正式联系方式及个人履历仅在完成相应证据核验后公开，不用占位信息制造机构背书。</p></article>
+    </div>
+    <div class="mt-14 flex flex-wrap gap-3">
+      <a class="bg-ink-950 px-5 py-3 text-sm font-semibold text-white hover:bg-ink-900" href={withBase('methodology/')}>查看研究方法</a>
+      <a class="border border-[#cfc8bc] px-5 py-3 text-sm font-semibold text-ink-900 hover:border-gold-500" href={withBase('research/')}>浏览研究报告</a>
     </div>
   </section>
 </BaseLayout>
