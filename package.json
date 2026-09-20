@@ -13,7 +13,9 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "audit": "npm audit --audit-level=high"
+    "audit": "npm audit --audit-level=high",
+    "qa": "node scripts/qa.mjs",
+    "verify": "npm run build && npm run qa"
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
