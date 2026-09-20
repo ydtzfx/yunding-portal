@@ -1,9 +1,10 @@
 ---
-interface Source { title:string; publisher:string; url:string; date?:string; accessed?:string }
+import type { ResearchEntry } from '../lib/research';
+type Source=ResearchEntry['data']['sources'][number];
 interface Props { sources:Source[] }
 const {sources}=Astro.props;
 ---
-{sources.length>0 && <section class="mt-16 border-t border-[#d8d2c8] pt-8" aria-labelledby="references-heading">
+{sources.length>0 && <section class="mt-16 border-t border-[#d8d2c8] pt-8" aria-labelledby="references-heading" data-source-list-count={String(sources.length)}>
   <div class="institution-eyebrow mb-3">References</div>
   <h2 id="references-heading" class="font-serif text-2xl font-bold text-ink-950">资料来源</h2>
   <ol class="mt-6 space-y-4">
