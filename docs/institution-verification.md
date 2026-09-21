@@ -13,13 +13,13 @@ The authoritative machine-readable confidence registry is `src/data/company-evid
 | Item | Confidence | Publication state | Current evidence / requirement |
 | --- | ---: | --- | --- |
 | Brand name “芸鼎投资研究院” | 99 | Assert | Site-owner confirmation + publicly indexed brand match |
-| Contact address | 96 | Assert | 企业方提供 + publicly indexed ydtzfx.com exact match |
-| Contact telephone | 96 | Assert | 企业方提供 + publicly indexed ydtzfx.com exact match |
-| Contact email | 96 | Assert | 企业方提供 + publicly indexed ydtzfx.com exact match |
+| Contact address | 95 | Assert | 企业方明确提供并授权公开 |
+| Contact telephone | 95 | Assert | 企业方明确提供并授权公开 |
+| Contact email | 95 | Assert | 企业方明确提供并授权公开 |
 | MIIT query URL | 100 | Assert | Official MIIT notice confirms `beian.miit.gov.cn` |
 | ICP filing number 粤ICP备20026282号 | 80 | Qualified | 企业方提供；must be checked against MIIT live query |
-| ydtzfx.com brand association | 92 | Qualified | Public website + LinkedIn association |
-| ydtzfx.com ownership/control | 60 | Withheld | Needs registrar, DNS, or admin-control proof |
+| ydtzfx.com brand association | 75 | Qualified | Historical public indexing + LinkedIn association; GitHub runner DNS resolution failed 2026-09-21 |
+| ydtzfx.com ownership/control | 20 | Withheld | No registrar/DNS/admin proof; live DNS resolution failed 2026-09-21 |
 | Legal entity name | 0 | Withheld | Needs current official registry/business licence |
 | Unified social credit code | 0 | Withheld | Needs current official registry/business licence |
 | Brand ↔ legal entity relationship | 0 | Withheld | Needs corporate/brand authorization evidence |
