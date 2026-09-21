@@ -34,7 +34,7 @@ jobs:
       - run: npm run release:manifest
       - run: test -s dist/release-audit.json
       - run: npm run contract:check
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
