@@ -74,3 +74,21 @@ After build and static QA, CI and Pages deployment run `npm run release:manifest
 - `Recovery Snapshot`: weekly Git bundle, content/config archive, release metadata and checksums, retained for 30 days in Actions artifacts.
 
 Same-provider recovery snapshots do not qualify as independent disaster recovery. Provider-independent backup requires a separately controlled external destination.
+
+
+## 95% confidence gate
+
+Corporate-identity facts use the machine-readable policy in `src/data/company-evidence.json`.
+
+Before a Pages artifact may be uploaded, CI must pass:
+
+```text
+content:check
+→ build
+→ qa
+→ confidence:check
+→ release:manifest
+→ contract:check
+```
+
+A fact below 95 cannot use publication mode `assert`. Material identity facts below 95 remain withheld; lower-risk facts may be displayed only with visible qualification.

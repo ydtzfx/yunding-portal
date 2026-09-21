@@ -34,6 +34,10 @@ if(manifest.schemaVersion!==2) addError('release manifest schemaVersion must be 
 if(manifest.contract!=='research-publishing-v2') addError('unexpected manifest contract: '+manifest.contract);
 if(manifest.package?.version!==PACKAGE.version) addError('manifest version '+manifest.package?.version+' != package version '+PACKAGE.version);
 if(catalogDoc.schemaVersion!==1) addError('catalog schemaVersion must be 1; got '+catalogDoc.schemaVersion);
+if(manifest.identityConfidence?.threshold!==95) addError('release manifest identity confidence threshold must be 95');
+for(const [key,fact] of Object.entries(manifest.identityConfidence?.facts ?? {})){
+  if(fact.score<95 && fact.publicationMode==='assert') addError(key+': below-threshold identity fact asserted in release manifest');
+}
 
 const reports=manifest.research?.reports ?? [];
 const drafts=manifest.research?.drafts ?? [];
@@ -140,6 +144,7 @@ for(const draftId of drafts){
 notes.push('Published reports aligned: '+reports.length);
 notes.push('Drafts isolated: '+drafts.length);
 notes.push('Catalog entries aligned: '+catalog.length);
+notes.push('Identity confidence threshold: '+manifest.identityConfidence?.threshold);
 for(const note of notes) console.log('✓',note);
 
 if(errors.length){

@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "threshold": 95,
+  "scoringNote": "Operational publication-confidence score, not a statistical probability. Scores reflect evidence strength and are used only to decide whether a claim may be asserted, must be qualified, or must be withheld.",
+  "facts": {
+    "brand.name": {
+      "score": 99,
+      "publicationMode": "assert",
+      "evidence": [
+        "site-owner-confirmed",
+        "exact match on publicly indexed ydtzfx.com"
+      ]
+    },
+    "contact.address": {
+      "score": 95,
+      "publicationMode": "assert",
+      "evidence": [
+        "site-owner-confirmed"
+      ]
+    },
+    "contact.phone": {
+      "score": 95,
+      "publicationMode": "assert",
+      "evidence": [
+        "site-owner-confirmed"
+      ]
+    },
+    "contact.email": {
+      "score": 95,
+      "publicationMode": "assert",
+      "evidence": [
+        "site-owner-confirmed"
+      ]
+    },
+    "filing.number": {
+      "score": 80,
+      "publicationMode": "qualified",
+      "evidence": [
+        "site-owner-confirmed"
+      ],
+      "qualification": "企业方提供；须以工信部备案管理系统实时查询结果为准"
+    },
+    "filing.queryUrl": {
+      "score": 100,
+      "publicationMode": "assert",
+      "evidence": [
+        "MIIT official notice confirms beian.miit.gov.cn as filing-system domain"
+      ]
+    },
+    "domain.association": {
+      "score": 75,
+      "publicationMode": "qualified",
+      "evidence": [
+        "historically indexed ydtzfx.com site uses the brand",
+        "LinkedIn profile points to ydtzfx.com",
+        "2026-09-21 GitHub runner DNS resolution failed"
+      ],
+      "qualification": "Historical public association only; current DNS resolution failed on 2026-09-21."
+    },
+    "domain.ownership": {
+      "score": 20,
+      "publicationMode": "withheld",
+      "evidence": [
+        "no registrar/DNS/admin-control proof in repository",
+        "2026-09-21 GitHub runner DNS resolution failed"
+      ]
+    },
+    "legalEntity.name": {
+      "score": 0,
+      "publicationMode": "withheld",
+      "evidence": [
+        "no primary registry/licence evidence supplied"
+      ]
+    },
+    "legalEntity.uscc": {
+      "score": 0,
+      "publicationMode": "withheld",
+      "evidence": [
+        "not supplied"
+      ]
+    },
+    "legalEntity.registeredAddress": {
+      "score": 0,
+      "publicationMode": "withheld",
+      "evidence": [
+        "not supplied"
+      ]
+    },
+    "regulatory.status": {
+      "score": 0,
+      "publicationMode": "withheld",
+      "evidence": [
+        "no regulator record supplied"
+      ]
+    }
+  }
+}

@@ -2,13 +2,27 @@
 
 All notable production releases are documented in this file.
 
+## [1.1.3] - 2026-09-21
+
+### Confidence Gated
+
+- Added a machine-readable 95/100 publication-confidence registry for corporate identity facts.
+- Added three publication modes: `assert`, `qualified`, and `withheld`.
+- Refactored Contact terminology from “Official Contact / 办公地址 / 正式邮箱” to evidence-bounded public-contact wording.
+- Added site-wide Organization JSON-LD using only facts at or above the publication threshold; legalName, registration, regulatory and unverified domain ownership are excluded.
+- Qualified the owner-supplied ICP filing number and require the official MIIT query link; the number is not presented as independently verified.
+- Live GitHub-runner validation on 2026-09-21 could not resolve `ydtzfx.com`; domain association/ownership confidence was therefore downgraded and the GitHub Pages origin remains canonical.
+- Added `npm run confidence:check` and made it a blocking CI/Pages deployment gate.
+- Added identity-confidence metadata to the release audit manifest and reconciliation checks.
+- Address, telephone and email remain publishable as enterprise-owner-confirmed facts at the minimum 95 threshold; they are not described as independent third-party verification.
+
 ## [1.1.2] - 2026-09-20
 
 ### Public Company Info
 
 - Added a canonical public-company data source for owner-confirmed office address, telephone, email and ICP filing information.
 - Published the office address, clickable telephone/email links and ICP filing on the Contact page.
-- Added official telephone/email and the ICP filing link to the site-wide footer.
+- Added published telephone/email and the ICP filing link to the site-wide footer.
 - Linked the filing number to the MIIT ICP/IP Address/Domain Information Filing Management System.
 - Updated About, Legal and Privacy wording so public-contact state is consistent across the site.
 - Updated the institution verification register to distinguish owner-confirmed public information from independently verified legal/regulatory identity.

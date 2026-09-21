@@ -171,20 +171,20 @@ if (assetSet.has('contact/index.html')) {
     COMPANY_PUBLIC.contact.phone,
     COMPANY_PUBLIC.contact.email,
     COMPANY_PUBLIC.filing.number,
-    COMPANY_PUBLIC.filing.url,
+    COMPANY_PUBLIC.filing.queryUrl,
   ];
   for (const value of requiredCompanyValues) {
     if (!contactHtml.includes(value)) fail(contactPath, `public company information missing from contact page: ${value}`);
   }
-  if (!contactHtml.includes('tel:'+COMPANY_PUBLIC.contact.phone)) fail(contactPath, 'official telephone tel: link missing');
-  if (!contactHtml.includes('mailto:'+COMPANY_PUBLIC.contact.email)) fail(contactPath, 'official email mailto: link missing');
+  if (!contactHtml.includes('tel:'+COMPANY_PUBLIC.contact.phone)) fail(contactPath, 'contact telephone tel: link missing');
+  if (!contactHtml.includes('mailto:'+COMPANY_PUBLIC.contact.email)) fail(contactPath, 'contact email mailto: link missing');
 }
 
 const homePath = path.join(DIST,'index.html');
 if (assetSet.has('index.html')) {
   const homeHtml = await fs.readFile(homePath,'utf8');
   if (!homeHtml.includes(COMPANY_PUBLIC.filing.number)) fail(homePath, 'ICP filing missing from site-wide footer');
-  if (!homeHtml.includes(COMPANY_PUBLIC.filing.url)) fail(homePath, 'MIIT filing link missing from site-wide footer');
+  if (!homeHtml.includes(COMPANY_PUBLIC.filing.queryUrl)) fail(homePath, 'MIIT filing link missing from site-wide footer');
 }
 
 
@@ -193,4 +193,4 @@ if (errors.length) {
   for (const error of errors) console.error('✗', error);
   process.exit(1);
 }
-console.log('✓ Owner-confirmed company contact and ICP publication contract passed.');
+console.log('✓ Company contact and qualified ICP publication contract passed.');

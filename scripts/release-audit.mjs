@@ -7,6 +7,7 @@ const ROOT=process.cwd();
 const DIST=path.join(ROOT,'dist');
 const RESEARCH=path.join(ROOT,'src/content/research');
 const PACKAGE=JSON.parse(await fs.readFile(path.join(ROOT,'package.json'),'utf8'));
+const EVIDENCE=JSON.parse(await fs.readFile(path.join(ROOT,'src/data/company-evidence.json'),'utf8'));
 
 async function walk(dir){
   const entries=await fs.readdir(dir,{withFileTypes:true});
@@ -92,6 +93,11 @@ const manifest={
     draftCount:drafts.length,
     reports,
     drafts,
+  },
+  identityConfidence:{
+    schemaVersion:EVIDENCE.schemaVersion,
+    threshold:EVIDENCE.threshold,
+    facts:Object.fromEntries(Object.entries(EVIDENCE.facts).map(([key,fact])=>[key,{score:fact.score,publicationMode:fact.publicationMode}])),
   },
   files:hashes,
 };
