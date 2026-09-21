@@ -39,3 +39,10 @@ Manifest schema version 2 includes the public research projection used for front
 - published report IDs and isolated draft IDs.
 
 After generating the manifest, `npm run contract:check` compares it with `/research/catalog.json` and rendered HTML. A mismatch blocks CI and Pages artifact upload.
+
+
+## Identity confidence
+
+The release manifest also records the corporate-identity publication-confidence threshold and each registered fact's score/publication mode.
+
+This enables post-release verification that no fact below 95 was emitted as an unconditional assertion. The confidence registry itself remains in `src/data/company-evidence.json`.
