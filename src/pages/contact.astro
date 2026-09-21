@@ -3,37 +3,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { company } from '../data/company';
 import { withBase } from '../lib/paths';
 ---
-<BaseLayout title="联系我们" description="芸鼎投资研究院官方联系渠道、办公地址与备案信息。">
+<BaseLayout title="联系我们" description="芸鼎投资研究院企业方提供的联系信息、证据状态与ICP备案查询说明。">
   <header class="page-header">
     <div class="page-header-inner">
-      <div class="institution-eyebrow">Contact & Verification</div>
+      <div class="institution-eyebrow">Contact & Evidence</div>
       <h1 class="page-title">联系我们</h1>
-      <p class="page-intro">以下地址、电话、邮箱及ICP备案信息由企业方明确提供并授权本站公开。法律主体名称、统一社会信用代码及监管资质等信息仅在完成相应证据核验后另行披露。</p>
+      <p class="page-intro">地址、电话与邮箱由企业方明确提供，并与公开可检索的 ydtzfx.com 页面信息一致，达到本站 95% 发布置信度门槛。ICP备案号由企业方提供，但尚未通过本站可复现的一手工信部查询结果完成独立核验，因此仅以资格说明方式展示。</p>
     </div>
   </header>
 
   <section class="institution-container py-12 md:py-16">
     <div class="grid gap-6 lg:grid-cols-[1fr_.9fr]">
       <article class="institution-card p-7 md:p-8">
-        <div class="institution-eyebrow">Official Contact</div>
+        <div class="institution-eyebrow">Public Contact</div>
         <h2 class="mt-4 font-serif text-2xl font-bold text-ink-950">公开联系信息</h2>
         <dl class="mt-7 divide-y divide-[#e2ddd4] text-sm">
           <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">网站名称</dt><dd class="text-slate-600">{company.name}</dd></div>
-          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">办公地址</dt><dd class="text-slate-600">{company.contact.address}</dd></div>
-          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">联系电话</dt><dd><a class="institution-link" href={'tel:'+company.contact.phone}>{company.contact.phone}</a></dd></div>
-          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">正式邮箱</dt><dd><a class="institution-link" href={'mailto:'+company.contact.email}>{company.contact.email}</a></dd></div>
-          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">ICP备案</dt><dd><a class="institution-link" href={company.filing.url} target="_blank" rel="noreferrer">{company.filing.number}<span class="sr-only">（工信部备案管理系统，新窗口）</span></a></dd></div>
-          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">法律主体信息</dt><dd class="text-slate-500">待完成证据核验后公开</dd></div>
+          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">联系地址</dt><dd class="text-slate-600" data-confidence="high">{company.contact.address}</dd></div>
+          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">联系电话</dt><dd data-confidence="high"><a class="institution-link" href={'tel:'+company.contact.phone}>{company.contact.phone}</a></dd></div>
+          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">联系邮箱</dt><dd data-confidence="high"><a class="institution-link" href={'mailto:'+company.contact.email}>{company.contact.email}</a></dd></div>
+          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]">
+            <dt class="font-semibold text-ink-900">ICP备案号</dt>
+            <dd data-confidence="qualified">
+              <a class="institution-link" href={company.filing.queryUrl} target="_blank" rel="noreferrer">{company.filing.number}<span class="sr-only">（工信部备案管理系统，新窗口）</span></a>
+              <span class="mt-1 block text-xs text-slate-500">企业方提供；以工信部备案管理系统实时查询结果为准。</span>
+            </dd>
+          </div>
+          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">法律主体信息</dt><dd class="text-slate-500" data-confidence="withheld">低于 95% 置信度门槛，暂不公开。</dd></div>
+          <div class="grid gap-2 py-4 sm:grid-cols-[9rem_1fr]"><dt class="font-semibold text-ink-900">监管/许可信息</dt><dd class="text-slate-500" data-confidence="withheld">低于 95% 置信度门槛，暂不公开。</dd></div>
         </dl>
       </article>
 
       <aside class="border border-[#d8d2c8] bg-[#f3efe6] p-7 md:p-8">
-        <div class="institution-eyebrow">Security Notice</div>
-        <h2 class="mt-4 font-serif text-2xl font-bold text-ink-950">敏感信息保护</h2>
-        <p class="mt-4 text-sm leading-7 text-slate-600">如需联系，请优先使用本页明确列示的电话与邮箱。请勿向无法核验的第三方页面、社交账号或其他联系方式发送身份证件、银行或交易账户信息、验证码、交易指令、投资组合或其他敏感资料。</p>
-        <p class="mt-4 text-sm leading-7 text-slate-600">ICP备案号可通过工信部 ICP/IP 地址/域名信息备案管理系统查询。</p>
+        <div class="institution-eyebrow">Verification Boundary</div>
+        <h2 class="mt-4 font-serif text-2xl font-bold text-ink-950">证据边界</h2>
+        <p class="mt-4 text-sm leading-7 text-slate-600">本页的“95%”是本站用于公开声明的内部证据门槛，不是统计学概率。达到门槛的事实可以直接陈述；低于门槛的事实只能带资格说明展示，或完全不公开。</p>
+        <p class="mt-4 text-sm leading-7 text-slate-600">ICP备案查询应以工业和信息化部 ICP/IP 地址/域名信息备案管理系统的实时结果为准。</p>
         <div class="mt-7 flex flex-wrap gap-3">
-          <a class="button-secondary" href={company.filing.url} target="_blank" rel="noreferrer">工信部备案查询</a>
+          <a class="button-secondary" href={company.filing.queryUrl} target="_blank" rel="noreferrer">工信部备案查询</a>
           <a class="button-secondary" href={withBase('privacy/')}>隐私说明</a>
           <a class="button-secondary" href={withBase('disclosure/')}>研究披露</a>
         </div>
