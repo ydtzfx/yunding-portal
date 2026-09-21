@@ -5,6 +5,7 @@ import ReportHighlights from '../components/research/ReportHighlights.astro';
 import AttachmentList from '../components/research/AttachmentList.astro';
 import { withBase } from '../lib/paths';
 import type { AuthorEntry, PublishedResearchEntry } from '../lib/research';
+import { company } from '../data/company';
 
 interface Props {
   entry: PublishedResearchEntry;
@@ -17,6 +18,7 @@ const summary=data.description ?? data.summary;
 const canonicalURL=new URL(Astro.url.pathname,Astro.site).toString();
 const authorPath=withBase('research/authors/'+author.id+'/');
 const authorURL=author.data.url ?? new URL(authorPath,Astro.site).toString();
+const organizationId=new URL(withBase(),Astro.site).toString()+'#organization';
 const jsonLd={
   '@context':'https://schema.org',
   '@type':'Article',
@@ -28,7 +30,7 @@ const jsonLd={
   mainEntityOfPage:{'@type':'WebPage','@id':canonicalURL},
   keywords:data.tags,
   author:{'@type':author.data.type,name:author.data.name,url:authorURL},
-  publisher:{'@type':'Organization',name:'芸鼎投资研究院',url:new URL(withBase(),Astro.site).toString()},
+  publisher:{'@id':organizationId,name:company.name},
 };
 ---
 <BaseLayout title={data.title} description={summary} canonical={canonicalURL} ogType="article">
