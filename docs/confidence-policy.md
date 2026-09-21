@@ -19,13 +19,13 @@ The machine-readable registry is `src/data/company-evidence.json`.
 | Fact | Score | Mode | Basis |
 | --- | ---: | --- | --- |
 | Brand name | 99 | assert | Site-owner confirmation + exact public brand match |
-| Contact address | 96 | assert | Site-owner confirmation + exact match on publicly indexed ydtzfx.com |
-| Contact telephone | 96 | assert | Site-owner confirmation + exact match on publicly indexed ydtzfx.com |
-| Contact email | 96 | assert | Site-owner confirmation + exact match on publicly indexed ydtzfx.com |
+| Contact address | 95 | assert | Site-owner confirmation for public display |
+| Contact telephone | 95 | assert | Site-owner confirmation for public display |
+| Contact email | 95 | assert | Site-owner confirmation for public display |
 | MIIT filing-system URL | 100 | assert | Official MIIT notice identifies beian.miit.gov.cn |
 | ICP filing number | 80 | qualified | Site-owner supplied; independent official query result not reproducibly captured in this repository |
-| ydtzfx.com brand association | 92 | qualified | Public site + LinkedIn association |
-| ydtzfx.com ownership/control | 60 | withheld | No registrar/DNS/admin-control evidence |
+| ydtzfx.com brand association | 75 | qualified | Historical indexed site + LinkedIn association; live DNS resolution failed on 2026-09-21 |
+| ydtzfx.com ownership/control | 20 | withheld | No registrar/DNS/admin-control evidence; live DNS resolution failed on 2026-09-21 |
 | Legal entity name | 0 | withheld | No primary registry/licence evidence |
 | Unified social credit code | 0 | withheld | Not supplied |
 | Registered address | 0 | withheld | Not supplied |
