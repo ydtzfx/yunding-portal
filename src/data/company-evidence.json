@@ -12,27 +12,24 @@
       ]
     },
     "contact.address": {
-      "score": 96,
+      "score": 95,
       "publicationMode": "assert",
       "evidence": [
-        "site-owner-confirmed",
-        "exact match on publicly indexed ydtzfx.com"
+        "site-owner-confirmed"
       ]
     },
     "contact.phone": {
-      "score": 96,
+      "score": 95,
       "publicationMode": "assert",
       "evidence": [
-        "site-owner-confirmed",
-        "exact match on publicly indexed ydtzfx.com"
+        "site-owner-confirmed"
       ]
     },
     "contact.email": {
-      "score": 96,
+      "score": 95,
       "publicationMode": "assert",
       "evidence": [
-        "site-owner-confirmed",
-        "exact match on publicly indexed ydtzfx.com"
+        "site-owner-confirmed"
       ]
     },
     "filing.number": {
@@ -51,19 +48,21 @@
       ]
     },
     "domain.association": {
-      "score": 92,
+      "score": 75,
       "publicationMode": "qualified",
       "evidence": [
-        "public ydtzfx.com site uses the brand",
-        "LinkedIn profile points to ydtzfx.com"
+        "historically indexed ydtzfx.com site uses the brand",
+        "LinkedIn profile points to ydtzfx.com",
+        "2026-09-21 GitHub runner DNS resolution failed"
       ],
-      "qualification": "品牌关联证据充分，但未取得注册商/DNS管理员证明，不等同域名所有权核验"
+      "qualification": "Historical public association only; current DNS resolution failed on 2026-09-21."
     },
     "domain.ownership": {
-      "score": 60,
+      "score": 20,
       "publicationMode": "withheld",
       "evidence": [
-        "no registrar or DNS-control proof in repository"
+        "no registrar/DNS/admin-control proof in repository",
+        "2026-09-21 GitHub runner DNS resolution failed"
       ]
     },
     "legalEntity.name": {
