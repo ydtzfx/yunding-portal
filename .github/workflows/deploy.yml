@@ -30,6 +30,7 @@ jobs:
       - run: npm run content:check
       - run: npm run build
       - run: npm run qa
+      - run: npm run confidence:check
       - run: npm run release:manifest
       - run: test -s dist/release-audit.json
       - run: npm run contract:check
