@@ -1,0 +1,29 @@
+name: Confidence Evidence Validation
+on:
+  push:
+    branches: [feat/confidence-gate-95]
+    paths:
+      - .github/workflows/confidence-evidence-validation.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Validate current public contact evidence
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location --max-time 20 https://ydtzfx.com/ -o /tmp/ydtzfx.html
+          grep -F '广州市天河区中山大道科韵路102号8楼C0161' /tmp/ydtzfx.html
+          grep -F '13503042560' /tmp/ydtzfx.html
+          grep -F 'gz@ydtzfx.com' /tmp/ydtzfx.html
+          echo "Current ydtzfx.com contact evidence matched."
+      - name: Validate MIIT query endpoint
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location --max-time 20 --head https://beian.miit.gov.cn/ >/tmp/miit-head.txt
+          head -20 /tmp/miit-head.txt
+          echo "MIIT filing query endpoint reachable."
